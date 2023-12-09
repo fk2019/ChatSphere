@@ -1,0 +1,70 @@
+.container {
+width: 100%;
+max-width: 960px;
+margin: 0 auto;
+}
+
+header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 20px;
+}
+
+.logo {
+width: 100px;
+height: 100px;
+}
+
+h1 {
+font-size: 30px;
+margin-bottom: 0;
+}
+
+nav {
+display: flex;
+align-items: center;
+}
+
+nav a {
+margin-right: 20px;
+text-decoration: none;
+color: #000;
+}
+
+nav a:hover {
+color: #333;
+}
+
+main {
+padding: 20px;
+}
+
+.messages {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.message {
+display: flex;
+align-items: center;
+padding: 20px;
+border-bottom: 1px solid #ccc;
+}
+
+.message img {
+width: 50px;
+height: 50px;
+border-radius: 50%;
+margin-right: 20px;
+}
+
+.message h2 {
+font-size: 20px;
+margin-bottom: 0;
+}
+
+.message p {
+margin-top: 0;
+}

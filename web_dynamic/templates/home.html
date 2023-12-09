@@ -1,0 +1,67 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/2c.css">
+    <link rel="icon" href="../static/images/avatars/favicon32.jpg">
+        <link rel="icon" href="../static/images/avatars/favicon16.jpg">
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/image.css' rel='stylesheet'>
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/chevron-right.css' rel='stylesheet'>
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/log-out.css' rel='stylesheet'>
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/menu.css' rel='stylesheet'>
+    <title>Chat App</title>
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="side-bar">
+	<div class="logo-header">
+	  <img src="../static/images/avatars/chat_logo.jpg">
+	  <p>ChatSphere</p>
+	</div>
+        <div class="users-list">
+            <!-- User names will be dynamically added here -->
+        </div>
+      </div>
+      <div class="chat-area">
+	<div class="chat-header">
+	  <div class="user-header"></div>
+	  <div class="current-user">
+	    <div class="user-image"></div>
+	    <div class="user">{{ session['name'] }}</div>
+	    <div class="user-menu">
+	      <div class="menu">
+		<i class="gg-menu"></i>
+	      </div>
+	      <ul class="menu-list">
+		<li>
+		  <input type="file" id="imageInput" style="display:none;">
+		  <a href="#" id="uploadButton"><p>Upload profile picture</p></a>
+		</li>
+		<li><p>Change username</p></li>
+	      </ul>
+	    </div>
+	  </div>
+	  <div class="header-button"><a href="{{ url_for('auth2.logout')}}"><i class="gg-log-out"></i></a></div>
+	</div>
+	<div class="messages" id="messages-container">
+                <!-- Messages will be dynamically added here -->
+
+	</div>
+	<div class="typing-indicator" id="typing-indicator"></div>
+	<div class="message-input">
+          <textarea id="message-input" placeholder="Type your message..." oninput='toggleSendButton()'></textarea>
+	  <label for="file-input" class="file-label"><i class="gg-image"></i></label>
+	  <input type="file" id="file-input" accept="image/*" onChange='toggleSendButton()'>
+
+	  <button id="send-button" onclick="sendMessage()"><i class="gg-chevron-right"></i></button>
+	</div>
+
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../static/js/t.js"></script>
+  </body>
+</html>

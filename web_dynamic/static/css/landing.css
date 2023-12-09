@@ -1,0 +1,134 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: purple;
+
+}
+.container {
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: rgba(128, 0, 128, 0.8);
+}
+div {
+    display: flex;
+    flex-direction: column;
+}
+.nav {
+    display: flex;
+    height: 3em;
+    justify-content: center;
+    flex-direction: row;
+    color: rgba(128, 0, 128, 0.8);
+}
+.nav a {
+    background: none;
+    margin-bottom: auto;
+    margin-top: auto;
+
+}
+.nav > .btn {
+    margin-left: auto;
+    margin-right: 10px;
+}
+.nav > p {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    margin-right: 80px;
+}
+
+header {
+    background-image: url('/static/images/avatars/bubble.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    color: rgba(128, 0, 128, 1);
+    padding: 50px;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+    height: 30%;
+    margin-bottom: 20px;
+    flex-direction: row;
+    justify-content: center;
+}
+.head-cls {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 0;
+}
+.image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: auto;
+    margin-left: auto;
+}
+
+.welcome {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-right: 10px;
+    margin-right: auto;
+}
+img {
+    height: 32em;
+}
+
+
+.features {
+    display: flex;
+    margin-bottom: 20px;
+  justify-content: space-around;
+  padding: 50px 0;
+      background-image: url('/static/images/avatars/plain_bg.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.feature {
+  text-align: center;
+}
+
+.cta {
+    display: flex;
+  text-align: center;
+  flex-direction: column;
+/*  color: #FFA500;*/
+  color: rgba(128, 0, 128, 0.8);
+  padding: 50px 0;
+  background-image: url('/static/images/avatars/plain_bg2.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-content: center;
+}
+.cta > .btn {
+    margin-right: auto;
+    margin-left: auto;
+}
+.btn, a {
+  display: flex;
+  padding: 10px 20px;
+  background-color: rgba(128, 0, 128, 0.8);
+  color: #FFA500;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+footer {
+    display: flex;
+    text-align: center;
+    padding: 20px 0;
+    color: #FFA500;
+}
+.cta > .btn {
+    margin-top: 25px;
+}
