@@ -9,10 +9,9 @@ import google.auth.transport.requests
 from models.user import User
 from models import storage
 from werkzeug.security import generate_password_hash, check_password_hash
+from functools import wraps
 
 auth2 = Blueprint('auth2', __name__)
-
-# make sure this matches with that's in client_secret.json
 
 
 GOOGLE_CLIENT_ID = "239785008997-cvo4q3efusm4al8ag0hkav4dc47g7m56.apps.googleusercontent.com"
@@ -26,6 +25,16 @@ flow = Flow.from_client_secrets_file(
     redirect_uri="http://127.0.0.1:5000/callback"
 )
 
+
+def login_required(fun):
+    """login_required wrapper function"""
+    @wraps(fun)
+    def fnc(*args, **kwargs):
+        """decorated function"""
+        if 'name' not in session:
+            return redirect(url_for('auth2.login'))
+        return fun(*args, **kwargs)
+    return fnc
 
 @auth2.route('/login')
 def login():
@@ -118,11 +127,7 @@ def logout():
     return redirect("/")
 
 
-@auth2.route("/")
-def index():
-    return "Hello World <a href='/login'><button>Login</button></a>"
-
-
-@auth2.route("/protected_area")
+@auth2.route("/home")
+@login_required
 def protected_area():
     return render_template('home.html')

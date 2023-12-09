@@ -7,9 +7,9 @@ import os
 
 app = Flask(__name__)
 
-#app.config['SECRET_KEY'] = 'secretghgfhjgfh'
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-app.config['SECRET_KEY'] = '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'
+secret_key = os.getenv('SECRET_KEY')
+app.config['SECRET_KEY'] = secret_key
 app.config["SESSION_TYPE"] = "filesystem"
 
 
@@ -26,4 +26,4 @@ def set_headers(response):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5005)
