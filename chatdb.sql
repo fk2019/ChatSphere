@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: chatdb
 -- ------------------------------------------------------
--- Server version	5.7.42
+-- Server version	5.7.42-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -126,7 +126,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('winnie','pbkdf2:sha256:600000$uyAjxpwtkKE7nu9p$1185ef2cf653bdba769d9c0a4030d90b47d27436c31276caaeaeea09ca02513a','winnie@gmail.com','dog.jpg',NULL,NULL,'222608ca-0571-485c-b678-51a3abd491e9','2023-12-11 12:53:45','2023-12-11 12:53:45'),('test','pbkdf2:sha256:600000$iLw8VCymRFuOBEeS$fc58033a521215052419faff69e01dfa96ef7e93e1a2d348a6fa50f78b6596ec','test@gmail.com','rogueone.jpeg',NULL,NULL,'e917fa4e-975c-45b4-916b-1b6963c31665','2023-12-11 10:23:24','2023-12-11 10:23:24');
+INSERT INTO `users` VALUES ('user','pbkdf2:sha256:600000$MJEjd3ZFdbQ0GmTz$49b74a68e91096f754f20ab9126cc6931228450a4605e64fb2d5dea11ce10644','user@gmail.com','dog.jpg',NULL,NULL,'1e51a745-b0be-4319-8fb7-adee346c08b9','2023-12-11 19:01:49','2023-12-11 19:01:49'),('winnie','pbkdf2:sha256:600000$uyAjxpwtkKE7nu9p$1185ef2cf653bdba769d9c0a4030d90b47d27436c31276caaeaeea09ca02513a','winnie@gmail.com','dog.jpg',NULL,NULL,'222608ca-0571-485c-b678-51a3abd491e9','2023-12-11 12:53:45','2023-12-11 12:53:45'),('test','pbkdf2:sha256:600000$iLw8VCymRFuOBEeS$fc58033a521215052419faff69e01dfa96ef7e93e1a2d348a6fa50f78b6596ec','test@gmail.com','rogueone.jpeg',NULL,NULL,'e917fa4e-975c-45b4-916b-1b6963c31665','2023-12-11 10:23:24','2023-12-11 10:23:24');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -139,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-11 14:30:39
+-- Dump completed on 2023-12-11 19:06:37
