@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 from os import getenv
 
-
 storage_t = getenv("STORAGE_TYPE")
 
 if storage_t == "db":

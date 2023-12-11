@@ -20,7 +20,7 @@ class User(BaseModel, Base):
         user_name = Column(String(128), nullable=False)
         password = Column(String(128), nullable=True)
         email = Column(String(128), nullable=False)
-        profile_photo = Column(String(128), default='/home/francis/Drop/Test_v2/default_images/dog.jpg')
+        profile_photo = Column(String(128), default='dog.jpg')
         oauth_provider = Column(String(60))
         oauth_user_id = Column(String(60))
         conversations = relationship(

@@ -5,13 +5,14 @@
 from api.v1.views import app_views
 from flask import Flask, jsonify, make_response
 from flask_cors import CORS
+from flask_mail import Mail
 from models import storage
 from os import getenv
 
-
 app = Flask(__name__)
+app.config.from_envvar('CHATAPI_SETTINGS')
 app.register_blueprint(app_views)
-cors = CORS(app, resources={r'/api/v1/*': {'origins': '*'}})
+cors = CORS(app, resources={r'/v1/*': {'origins': '*'}})
 
 
 @app.teardown_appcontext

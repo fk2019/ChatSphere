@@ -5,14 +5,14 @@ document.addEventListener('DOMContentLoaded', function () {
     imageInput.click();
   });
 
-  const usersUrl = 'http://127.0.0.1:5000/api/v1/users';
+  const usersUrl = 'https://techinspire.tech/api/v1/users';
   let currentUser;
 
   const loadCurrentUser = () => {
     const userImage = document.querySelector('.user-image');
     userImage.classList.add('user-pic');
     const img = document.createElement('img');
-    const url = `http://127.0.0.1:5000/api/v1/users/${currentUser.id}/image`;
+    const url = `http://16.16.162.146/api/v1/users/${currentUser.id}/image`;
     img.src = url;
     userImage.appendChild(img);
   };
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (file) {
       let formData = new FormData();
       formData.append('image', file);
-      const putUrl = `http://127.0.0.1:5000/api/v1/users/${currentUser.id}/upload`;
+      const putUrl = `http://16.16.162.146/api/v1/users/${currentUser.id}/upload`;
       let path = '';
       formData.forEach((d) => {
         path = d.name;
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let convId;
   let rec;
   let sender;
-  //socket.connect('http:127.0.0.1:5000');
+  //socket.connect('http:16.16.162.146');
   const getImage = (url) => {
     $.get(url).done((data) => {
       const b = new Blob([data]);
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   };
   function loadUserImage(user, el, userPicDiv, userPar) {
-    const url = `http://127.0.0.1:5000/api/v1/users/${user.id}/image`;
+    const url = `http://16.16.162.146/api/v1/users/${user.id}/image`;
     let imageSrc;
     imageSrc = getImage(url);
     const userImage = document.createElement('img');
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
     rec = user;
     sender = currentUser;
     let messages = [];
-    const messageUrl = `http://127.0.0.1:5000/api/v1/conversations/${convId}/messages`;
+    const messageUrl = `http://16.16.162.146/api/v1/conversations/${convId}/messages`;
     $.get(messageUrl).done((data) => {
       $.each(data, (i, msg) => {
         const mess = [];
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     if (fl !== null) {
       console.log(currentUser.id, sender);
-      const getUrl = `http://127.0.0.1:5000/api/v1/conversations/${convId}/file`;
+      const getUrl = `http://16.16.162.146/api/v1/conversations/${convId}/file`;
       const pdata = {
         path: fl,
       };
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
       messageInput.value = '';
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-      const postUrl = `http://127.0.0.1:5000/api/v1/conversations/${convId}/messages`;
+      const postUrl = `http://16.16.162.146/api/v1/conversations/${convId}/messages`;
       let sdata = {
         content: message,
         sender_id: currentUser.id,
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
       };
       sdata = JSON.stringify(sdata);
       $.post({
-        url: 'http://127.0.0.1:5000/api/v1/conversations',
+        url: 'http://16.16.162.146/api/v1/conversations',
         data: sdata,
         headers: { 'Content-Type': 'application/json' },
       }).done((data) => {
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const messageArray = [file, currentUser.id];
 
       displayMessage(messageArray, currentUser, 'image');
-      const fileUrl = `http://127.0.0.1:5000/api/v1/conversations/${convId}/${currentUser.id}/messages/file`;
+      const fileUrl = `http://16.16.162.146/api/v1/conversations/${convId}/${currentUser.id}/messages/file`;
       const fData = new FormData();
       fData.append('file', file);
       //      messageArray[0] = fData;

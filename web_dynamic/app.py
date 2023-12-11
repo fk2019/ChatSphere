@@ -3,18 +3,17 @@ from .views.main import main
 from .views.auth import auth
 from .views.auth2 import auth2
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 app = Flask(__name__)
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-secret_key = os.getenv('SECRET_KEY')
-app.config['SECRET_KEY'] = secret_key
-app.config["SESSION_TYPE"] = "filesystem"
+app.config.from_envvar('WEBDYNAMIC_SETTINGS')
 
 
 app.register_blueprint(main)
-#app.register_blueprint(auth)
 app.register_blueprint(auth2)
 
 

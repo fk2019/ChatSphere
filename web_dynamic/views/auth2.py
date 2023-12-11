@@ -1,5 +1,6 @@
 import os
 import pathlib
+import requests
 from flask import Blueprint, render_template, request, redirect, flash, url_for, session, abort
 import requests
 from google.oauth2 import id_token
@@ -22,7 +23,7 @@ client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri="http://127.0.0.1:5000/callback"
+    redirect_uri="https://techinspire.tech/callback"
 )
 
 
@@ -93,8 +94,9 @@ def callback():
     if user:
         return redirect(url_for('auth2.protected_area'))
     kwargs = {'user_name': name, 'email': email, 'oauth_provider': 'googgle', 'oauth_user_id': oauth_user_id}
-    new_user = User(**kwargs)
-    new_user.save()
+    requests.post('https://techinspire.tech/api/v1/users', json=kwargs)
+    #new_user = User(**kwargs)
+    #new_user.save()
     return redirect(url_for('auth2.google_login'))
 
 
@@ -112,12 +114,12 @@ def register_user_post():
     user = storage._DBStorage__session.query(User).filter_by(
         email=email).first()
     if user:
-        flash('email already registered')
+        flash('Please try again')
         return redirect(url_for('auth2.register_user_post'))
     kwargs = {'user_name': username, 'email': email, 'password': password}
-    print(kwargs)
-    new_user = User(**kwargs)
-    new_user.save()
+    requests.post('https://techinspire.tech/api/v1/users', json=kwargs)
+    #new_user = User(**kwargs)
+    #new_user.save()
     return redirect(url_for('auth2.login'))
 
 

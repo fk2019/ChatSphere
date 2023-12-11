@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 """New view for  User objects"""
 from api.v1.views import app_views
-from flask import abort, request, make_response, jsonify, send_from_directory
+from flask import abort, request, make_response, jsonify, send_from_directory, current_app
 from models import storage
 from models.user import User
 from models.redis import redis_client
 import os
 from io import BytesIO
+from hashlib import md5
+from werkzeug.utils import secure_filename
 
 
 @app_views.route('/users', strict_slashes=False)
@@ -48,9 +50,8 @@ def user_image(user_id):
             abort(404)
         obj = obj.to_dict()
         redis_client.set(user_id, str(obj))
-    image_path = obj.get('profile_photo')
-    filename = os.path.basename(image_path)
-    folder = os.path.dirname(image_path)
+    filename = obj.get('profile_photo')
+    folder = current_app.config.get('UPLOAD_FOLDER')
     return (send_from_directory(folder, filename), 200)
 
 
@@ -58,6 +59,8 @@ def user_image(user_id):
 def post_user():
     """Post a User object"""
     args = ['user_name', 'email', 'password']
+    print('posting...')
+    print(request.get_json())
     if not request.get_json():
         return (make_response(jsonify({'error': 'Not a JSON'}), 400))
     for arg in args:
@@ -89,25 +92,30 @@ def update_user(user_id):
 @app_views.route('/users/<string:user_id>/upload', methods=['PUT'], strict_slashes=False)
 def update_user_pic(user_id):
     """Update a User object's image"""
+    upload_folder = current_app.config.get('UPLOAD_FOLDER')
     obj = storage.get(User, user_id)
+    ALLOWED_EXTS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
     if not obj:
         abort(404)
     if 'image' not in request.files:
         return (make_response(jsonify({'error': 'No file selected'})), 400)
-    else:
-        file = request.files.get('image')
+    file = request.files.get('image')
+    type = os.path.splitext(file.filename)[1].split('.')[1]
+    if file and type in ALLOWED_EXTS:
         filename = file.filename
         content_type = file.content_type
-        folder = '/home/francis/Drop/Test_v2/uploads'
-        path = os.path.join(folder, filename)
+        secure_name = secure_filename(filename)
+        path = os.path.join(upload_folder, secure_name)
         file.save(path)
-        data = {'profile_photo': path}
+        data = {'profile_photo': secure_name}
         for key, val in data.items():
             if key not in ['id', 'created_at', 'updated_at']:
                 setattr(obj, key, val)
         obj.save()
         redis_client.set(user_id, str(obj.to_dict()))
         return (jsonify({'status': 'Image updated successfully'}), 200)
+    else:
+        return jsonify({'status': 'file tyep not allowed'})
 
 
 @app_views.route('/users/<string:user_id>', methods=['DELETE'], strict_slashes=False)

@@ -6,6 +6,9 @@ from models.conversation import Conversation
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
 
 classes = {"User": User, "Message": Message, "Conversation": Conversation}
 
