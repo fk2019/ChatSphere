@@ -25,7 +25,6 @@ GOOGLE_CLIENT_ID = "239785008997-cvo4q3efusm4al8ag0hkav4dc47g7m56.apps.googleuse
 
 client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
 
-
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
