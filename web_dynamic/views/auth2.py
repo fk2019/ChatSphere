@@ -71,6 +71,7 @@ def basic_login():
 
 @auth2.route("/callback")
 def callback():
+    """Callback function for google auth"""
     flow.fetch_token(authorization_response=request.url)
 
     #if not session["state"] == request.args["state"]:
@@ -130,11 +131,13 @@ def confirm_email(token):
 
 @auth2.route('/register')
 def register():
+    """render register template"""
     return render_template('register.html')
 
 
 @auth2.route('/register', methods=['POST'])
 def register_user_post():
+    """basic user registration"""
     username = request.form.get('username')
     email = request.form.get('email')
     password = request.form.get('password')
@@ -156,6 +159,7 @@ def register_user_post():
 
 @auth2.route("/logout")
 def logout():
+    """logout and clear session"""
     session.clear()
     return redirect("/")
 
@@ -163,4 +167,5 @@ def logout():
 @auth2.route("/home")
 @login_required
 def protected_area():
+    """Render home page"""
     return render_template('home.html')
