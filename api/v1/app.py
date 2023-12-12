@@ -11,6 +11,7 @@ from os import getenv
 
 app = Flask(__name__)
 app.config.from_envvar('CHATAPI_SETTINGS')
+app.mail = Mail(app)
 app.register_blueprint(app_views)
 cors = CORS(app, resources={r'/v1/*': {'origins': '*'}})
 

@@ -1,7 +1,7 @@
 import os
 import pathlib
 import requests
-from flask import Blueprint, render_template, request, redirect, flash, url_for, session, abort
+from flask import Blueprint, render_template, request, redirect, flash, url_for, session, abort, current_app
 import requests
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
@@ -11,8 +11,14 @@ from models.user import User
 from models import storage
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
+from itsdangerous import URLSafeTimedSerializer
+from flask_mail import Mail, Message
+from dotenv import load_dotenv
+
+load_dotenv()
 
 auth2 = Blueprint('auth2', __name__)
+
 
 
 GOOGLE_CLIENT_ID = "239785008997-cvo4q3efusm4al8ag0hkav4dc47g7m56.apps.googleusercontent.com"
@@ -94,7 +100,33 @@ def callback():
         return redirect(url_for('auth2.protected_area'))
     kwargs = {'user_name': name, 'email': email, 'oauth_provider': 'google', 'oauth_user_id': oauth_user_id}
     requests.post('https://techinspire.tech/api/v1/users', json=kwargs)
+    send_email(email, name)
     return redirect(url_for('auth2.google_login'))
+
+
+def send_confirmation_email(user_email, token, name):
+    """Send confirmation email"""
+    mail = Mail(current_app)
+    with current_app.app_context():
+        msg = Message('Confirm Your Email', recipients=[user_email])
+        confirmation_url = url_for('auth2.confirm_email', token=token, _external=True)
+        msg.html = render_template('email_confirm.html', name=name, confirmation_url=confirmation_url)
+        mail.send(msg)
+
+
+def send_email(user_email, name):
+    """send email"""
+    mail = Mail(current_app)
+    with current_app.app_context():
+        msg = Message('Welcome to ChatSphere', recipients=[user_email])
+        msg.html = render_template('welcome.html', name=name)
+        mail.send(msg)
+
+
+@auth2.route('/confirm/<string:token>')
+def confirm_email(token):
+    flash('Email confirmed successfully!')
+    return redirect(url_for('auth2.login'))
 
 
 @auth2.route('/register')
@@ -114,8 +146,13 @@ def register_user_post():
         flash('Please try again')
         return redirect(url_for('auth2.register_user_post'))
     kwargs = {'user_name': username, 'email': email, 'password': password}
+    token_serializer = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+    token = token_serializer.dumps(email)
+    send_confirmation_email(email, token, username)
+    flash('Confirmation email sent to your inbox. Please confirm')
     requests.post('https://techinspire.tech/api/v1/users', json=kwargs)
-    return redirect(url_for('auth2.login'))
+    send_email(email, username)
+    return render_template('confirm.html')
 
 
 @auth2.route("/logout")

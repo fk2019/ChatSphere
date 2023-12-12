@@ -2,12 +2,14 @@
 """New view for  User objects"""
 from api.v1.views import app_views
 from flask import abort, request, make_response, jsonify, send_from_directory, current_app
+from flask_mail import Message, Mail
 from models import storage
 from models.user import User
 from models.redis import redis_client
 import os
 from io import BytesIO
 from werkzeug.utils import secure_filename
+from itsdangerous import URLSafeTimedSerializer
 
 
 @app_views.route('/users', strict_slashes=False)
@@ -65,6 +67,9 @@ def post_user():
         return save_user(oauth_args)
     return save_user(basic_args)
 
+def send_email():
+    """sent email"""
+    pass
 def save_user(args):
     """Save user in db"""
     for arg in args:
@@ -73,6 +78,26 @@ def save_user(args):
     obj = User(**request.get_json())
     if not obj:
         abort(404)
+    json = request.get_json()
+    email = json.get('email')
+    name = json.get('user_name')
+    mail_config = {
+        'MAIL_SERVER': 'smtp.gmail.com',
+        'MAIL_PORT': 465,
+        'MAIL_USE_TLS': False,
+        'MAIL_USE_SSL': True,
+        'MAIL_USERNAME': 'francisk.consult@gmail.com',
+        'MAIL_PASSWORD': 'nzkd vxex dryw qzyo',
+        'MAIL_DEFAULT_SENDER': 'francisk.consult@gmail.com'
+    }
+    current_app.config.update(mail_config)
+    mail = Mail(current_app)
+    with current_app.app_context():
+        msg = Message('Hello {}'.format(name),
+                      recipients=[email])
+        msg.body = 'testing smtp'
+        msg.html = '<b>Testing</b>'
+        mail.send(msg)
     obj.save()
     return (obj.to_dict(), 201)
 
