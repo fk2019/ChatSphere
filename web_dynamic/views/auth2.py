@@ -66,7 +66,6 @@ def basic_login():
 
 @auth2.route("/callback")
 def callback():
-
     flow.fetch_token(authorization_response=request.url)
 
     #if not session["state"] == request.args["state"]:
@@ -93,10 +92,8 @@ def callback():
         email=email).first()
     if user:
         return redirect(url_for('auth2.protected_area'))
-    kwargs = {'user_name': name, 'email': email, 'oauth_provider': 'googgle', 'oauth_user_id': oauth_user_id}
+    kwargs = {'user_name': name, 'email': email, 'oauth_provider': 'google', 'oauth_user_id': oauth_user_id}
     requests.post('https://techinspire.tech/api/v1/users', json=kwargs)
-    #new_user = User(**kwargs)
-    #new_user.save()
     return redirect(url_for('auth2.google_login'))
 
 
@@ -118,8 +115,6 @@ def register_user_post():
         return redirect(url_for('auth2.register_user_post'))
     kwargs = {'user_name': username, 'email': email, 'password': password}
     requests.post('https://techinspire.tech/api/v1/users', json=kwargs)
-    #new_user = User(**kwargs)
-    #new_user.save()
     return redirect(url_for('auth2.login'))
 
 

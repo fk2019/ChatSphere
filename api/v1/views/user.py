@@ -7,7 +7,6 @@ from models.user import User
 from models.redis import redis_client
 import os
 from io import BytesIO
-from hashlib import md5
 from werkzeug.utils import secure_filename
 
 
@@ -58,11 +57,16 @@ def user_image(user_id):
 @app_views.route('/users', methods=['POST'], strict_slashes=False)
 def post_user():
     """Post a User object"""
-    args = ['user_name', 'email', 'password']
-    print('posting...')
-    print(request.get_json())
+    basic_args = ['user_name', 'email', 'password']
+    oauth_args = ['user_name', 'email', 'oauth_provider', 'oauth_user_id']
     if not request.get_json():
         return (make_response(jsonify({'error': 'Not a JSON'}), 400))
+    if 'oauth_provider' in request.get_json():
+        save_user(oauth_args)
+    save_user(basic_args)
+
+def save_user(args):
+    """Save user in db"""
     for arg in args:
         if arg not in request.get_json():
             return (make_response(jsonify({'error': 'Missing {}'.format(arg)}), 400))

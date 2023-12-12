@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """New view for  Message objects"""
 from api.v1.views import app_views
-from flask import abort, request, make_response, jsonify, send_from_directory
+from flask import abort, request, make_response, jsonify, send_from_directory, current_app
 from models import storage
 from models.user import User
 from models.message import Message
 from models.conversation import Conversation
 import os
-
+from werkzeug.utils import secure_filename
 
 @app_views.route('/conversations/<string:conversation_id>/messages', strict_slashes=False)
 def messages(conversation_id):
@@ -49,35 +49,30 @@ def post_message_image(conversation_id, sender_id):
         return (make_response(jsonify({'error': 'No file selected'})), 400)
     file = request.files.get('file')
     filename = file.filename
+    filename = secure_filename(filename)
     content_type = file.content_type
-    folder = '/home/francis/Drop/Test_v2/sent_files'
+    folder = current_app.config.get('UPLOAD_FOLDER')
     path = os.path.join(folder, filename)
     file.save(path)
-    data = {'file': path, 'sender_id': sender_id}
+    data = {'file': filename, 'sender_id': sender_id}
     conv = storage.get(Conversation, conversation_id)
     if not conv:
         abort(404)
     conv.messages.append(Message(**data))
     conv.save()
     if conv:
-        return (jsonify({"status": "message sent successfully"}), 200)
+        return (jsonify({"status": "file uploaded successfully"}), 200)
     abort(404)
 
 
-@app_views.route('/conversations/<string:conversation_id>/file', methods=['POST'], strict_slashes=False)
-def message_file(conversation_id):
+@app_views.route('/conversations/<string:conversation_id>/file/<string:file_name>', strict_slashes=False)
+def message_file(conversation_id, file_name):
     """Retrieve message file"""
-    if not request.get_json():
-        return (make_response(jsonify({'error': 'Not a JSON'}), 400))
-
     obj = storage.get(Conversation, conversation_id)
     if obj is None:
         abort(404)
-    image_path = request.get_json().get('path')
-
-    filename = os.path.basename(image_path)
-    folder = os.path.dirname(image_path)
-    print(image_path)
+    filename = secure_filename(file_name)
+    folder = current_app.config.get('UPLOAD_FOLDER')
     return (send_from_directory(folder, filename), 200)
 
 @app_views.route('/conversations/<string:conversation_id>/messages/<string:message_id>', methods=['DELETE'], strict_slashes=False)

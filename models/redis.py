@@ -2,6 +2,9 @@
 """Cache info using redis"""
 import redis
 from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
 
 port = getenv('REDIS_PORT')
 host = getenv('REDIS_HOST')
