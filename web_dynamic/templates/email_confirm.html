@@ -6,14 +6,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link ref=""rel="stylesheet" href="../static/css/confirm.css">
     <title>Welcome to ChatSphere</title>
 </head>
 <body>
+  <article>
     <h4>Hi {{ name }},</h4>
     <p>Thank you for joining ChatSphere!</p>
     <p>Please confirm your email by clicking the following link:</p>
-    <a href="{{ confirmation_url }}">{{ confirmation_url }}</a>
+    <button type="button"><a href="{{ confirmation_url }}">Confirm email</a></button>
     <p>Best regards,</p>
     <p>The ChatSphere Team</p>
+    </article>
 </body>
 </html>

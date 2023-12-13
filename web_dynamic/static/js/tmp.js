@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const typingIndicator = document.getElementById('typing-indicator');
   const messageInput = document.getElementById('message-input');
   const fileInput = document.getElementById('file-input');
-  
   const header = document.querySelector('.chat-header');
   const sideBar = document.querySelector('.side-bar');
   const userPic = document.createElement('div');
@@ -138,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
     sender = currentUser;
     let messages = [];
     const messageUrl = messageURL + `${convId}/messages`;
-    if (convId != undefined) {
     $.get(messageUrl).done((data) => {
       $.each(data, (i, msg) => {
         const mess = [];
@@ -147,7 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       messages.forEach((message) => displayMessage(message, currentUser));
     });
-    }
 
     current = user;
     userHeader.innerHTML = '';
@@ -244,8 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   sendMessage = function () {
     const message = messageInput.value.trim();
-    let isFile = fileInput.files.length > 0;
-    if (message.length > 1 && convId === undefined && !isFile) {
+    if (convId === undefined) {
       // create a conversatonId
       let sdata = {
         participants: [currentUser.id, rec.id],
@@ -258,50 +254,13 @@ document.addEventListener('DOMContentLoaded', function () {
       }).done((data) => {
         convId = data.id;
         messagesContainer.innerHTML = '';
+
         send(message, convId);
-        toggleSendButton();
       });
-    } else if (message.length > 1 && !isFile) {
-      send(message, convId);
-      toggleSendButton();
-    } else if (isFile && convId === undefined) {
-      let sdata = {
-        participants: [currentUser.id, rec.id],
-      };
-      sdata = JSON.stringify(sdata);
-      $.post({
-        url: messageURL,
-        data: sdata,
-        headers: { 'Content-Type': 'application/json' },
-      }).done((data) => {
-        convId = data.id;
-        messagesContainer.innerHTML = '';
-
-        //paste heere
-        const file = fileInput.files[0];
-        const messageArray = [file, currentUser.id];
-
-        displaySentFile(messageArray)
-        const fileUrl = messageURL + `${convId}/${currentUser.id}/messages/file`;
-        const fData = new FormData();
-        fData.append('file', file);
-        const fileData = {
-          file: fData,
-        };
-        $.post({
-          url: fileUrl,
-          data: fData,
-          contentType: false,
-          processData: false,
-        }).done((data) => {
-          console.log(data);
-          fileInput.value = ''
-          toggleSendButton();
-        })
-          .fail((er) => console.error('Error', er));
-      });
-    } else {
-//
+    }
+    send(message, convId);
+    const isFile = fileInput.files.length > 0;
+    if (isFile) {
       const file = fileInput.files[0];
       const messageArray = [file, currentUser.id];
 
@@ -317,18 +276,13 @@ document.addEventListener('DOMContentLoaded', function () {
         data: fData,
         contentType: false,
         processData: false,
-      }).done((data) => {
-        console.log(data);
-        fileInput.value = ''
-        toggleSendButton()
-      })
+      }).done((data) => console.log(data))
         .fail((er) => console.error('Error', er));
     }
-  }
 
+  };
 
-
-  window.toggleSendButton = function() {
+  window.toggleSendButton = function () {
     const sendButton = document.getElementById('send-button');
     const messageInput = document.getElementById('message-input');
 

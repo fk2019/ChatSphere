@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Landing Page</title>
+  <title>ChatSphere | The Seamless Messaging Platform </title>
   <link rel="stylesheet" href="../static/css/landing.css">
   <link rel="icon" href="../static/images/avatars/favicon16.jpg">
 </head>
@@ -12,16 +12,19 @@
     <div class="nav">
       <a href="#">Home</a>
       <a href="#">Features</a>
+      <a href="#">Privacy</a>
       <a href="#">About</a>
-      <a href="{{ url_for('auth2.register') }}" class="btn">Join Us</a>
+      <a href="{{ url_for('auth2.login') }}" class="login">Log in</a>
+      <a href="{{ url_for('auth2.register') }}" class="btn top">Start messaging</a>
 
     </div>
 
     <header>
       <div class="head-cls">
 	<div class="welcome">
-	  <h1>Welcome to My Website</h1>
-	  <p>Your go-to destination for amazing content</p>
+	  <h1>Experience the full spectrum of connection: ChatSphere - Where every exchange is a visual symphony</h1>
+	  <p>Experience seamless connections with the most secure and reliable messaging platform.Use ChatSphere to start and join conversations.</p>
+	  <a href="{{ url_for('auth2.register_user_post') }}" class="btn">Start connecting</a>
 	</div>
 	<div class="image">
 	  <img src="/static/images/avatars/landing_page.png">
@@ -31,25 +34,43 @@
 
   <section class="features">
     <div class="feature">
-      <h2>Feature 1</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <div class="feature-txt">
+      <h2>Connecting you with everyone, everywhere</h2>
+      <p>Experience universal connectivity with ChatSphere, the messaging app that seamlessly bridges the gap between your family, friends, and colleagues, ensuring you're always connected to the people who matter</p>
+      </div>
+      <div class="image">
+	<img src="/static/images/avatars/landing_page.png">
+      </div>
+
+    </div>
+
+
+    <div class="feature f2">
+      <div class="feature-txt">
+      <h2>Guardians of your conversations; where private messaging takes center stage</h2>
+      <p>Experience the assurance of confidential communication with ChatSphere as we prioritize the security of your conversations. In this messaging platform, private messaging is not just a feature; it's at the forefront, offering a trusted space for your most personal exchanges</p>
+      </div>
+      <div class="image">
+	<img src="/static/images/avatars/landing_page.png">
+      </div>
+
     </div>
 
     <div class="feature">
-      <h2>Feature 2</h2>
-      <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
+      <div class="feature-txt">
+      <h2>Amplify conversations with dynamic visuals and rich media.</h2>
+      <p>Unleashing the expressive power of ChatSphere means more than just words – it's a dynamic communication platform where your messages come alive through vibrant visuals and compelling media, enhancing the depth and impact of every interaction</p>
+      </div>
+      <div class="image">
+	<img src="/static/images/avatars/landing_page.png">
+      </div>
 
-    <div class="feature">
-      <h2>Feature 3</h2>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-    </div>
+      </div>
   </section>
 
   <section class="cta">
-    <h2>Join Us Today!</h2>
-    <p>Sign up now to explore the exciting world of our website.</p>
-    <a href="{{ url_for('auth2.register_user_post') }}" class="btn">Sign Up</a>
+    <h2>Start elevating your conversations with ChatSphere today</h2>
+    <a href="{{ url_for('auth2.register_user_post') }}" class="btn">Start connecting</a>
   </section>
 
   <footer>

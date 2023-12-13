@@ -1,0 +1,17 @@
+   body {
+      font-family: Arial, sans-serif;
+      background-color: rgba(255, 255, 255, 0.8);
+      margin: 0;
+      height: 100vh;
+      font-family: 'Roboto', arial, sans-serif;
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #000;
+    }
+   article {
+       padding: 10px;
+       width: 45%;
+   }
