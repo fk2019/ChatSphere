@@ -1,4 +1,3 @@
-
 # Table of Contents
 
 1.  [2023 Christmas countdown](#org96dc95c)
@@ -16,7 +15,7 @@
 
 <a id="org96dc95c"></a>
 
-# 2023 Christmas countdown
+# Christmas Countdown Timer
 
 Anticipate the joy of christmas with an awesome countdown
 

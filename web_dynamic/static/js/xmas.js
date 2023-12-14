@@ -1,3 +1,4 @@
+//updateCountdown function
 function updateCountdown() {
   const christmasDate = new Date('December 25, 2023 00:00:00').getTime();
   const currentDate = new Date().getTime();
@@ -18,6 +19,7 @@ function formatTime(time) {
   return time < 10 ? `0${time}` : time;
 }
 
+//Update each digit
 function updateDigit(digitId, newValue) {
   const digitElement = document.getElementById(digitId);
   const currentDigit = digitElement.innerText;
@@ -27,7 +29,7 @@ function updateDigit(digitId, newValue) {
     setTimeout(() => {
       digitElement.innerText = newValue;
       digitElement.classList.remove('changing');
-    }, 500); // Half of the animation duration
+    }, 500);
   }
 }
 // Update the countdown every second
