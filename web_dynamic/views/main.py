@@ -7,9 +7,11 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
+    """Landing page route"""
     return render_template('landing.html')
 
 
-@main.route('/profile')
-def profile():
-    return render_template('home.html')
+@main.route('/xmas_countdown')
+def xmas():
+    """Xmas countdown route"""
+    return render_template('xmas.html')

@@ -1,0 +1,109 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: rgba(200, 0, 0, 0.8);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+section {
+    display: flex;
+    align-items: center;
+}
+#countdown-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px rgba(255, 215, 0, 0.6);
+}
+
+h1 {
+    color: #e8491d;
+    font-size: 40px;
+}
+
+.fold-chart {
+    display: flex;
+    justify-content: center;
+    font-size: 3em;
+    margin-top: 10px;
+    color: #2e3192;
+    perspective: 1000px;
+}
+#day, #hour, #minute, #second {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+}
+p {
+    margin-bottom: 10px;
+}
+.code {
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+}
+.digit {
+    width: 2em;
+    text-align: center;
+    transform-style: preserve-3d;
+    transform-origin: center top;
+}
+.changing {
+    animation: fold 1s ease-in-out;
+}
+
+@keyframes fold {
+    0%, 100% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(-90deg);
+    }
+}
+
+#decorations {
+    margin-top: 20px;
+}
+
+.decoration {
+    display: inline-block;
+    font-size: 3em;
+    color: #e8491d;
+}
+#bell {
+    display: flex;
+    font-size: 3em;
+    margin-top: 20px;
+    animation: swing 1.5s ease-in-out infinite;
+}
+
+@keyframes swing {
+    0%, 100% {
+        transform: rotateZ(0deg);
+    }
+    50% {
+        transform: rotateZ(20deg);
+    }
+}
+footer {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    color: rgba(255, 215, 0, 0.8);
+}
+.f-items {
+    display: flex;
+    gap: 50px;
+}
+a {
+    color: rgba(255, 215, 0, 0.8);
+    text-decoration: none;
+}
+a:hover {
+    color: #2e3192;
+}
