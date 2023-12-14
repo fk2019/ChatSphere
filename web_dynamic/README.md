@@ -1,25 +1,27 @@
 
 # Table of Contents
 
-1.  [2023 Christmas countdown](#org14e707f)
-2.  [Introduction](#org92010ab)
-3.  [Getting Started](#org5ad7705)
-4.  [Screenshots](#orga6572ff)
-5.  [Related Projects](#org82449f4)
-6.  [Future](#org7ba19d5)
-7.  [NB](#org2d19f7c)
-8.  [Authors](#org8496781)
-9.  [Acknowledgements](#org331fce1)
+1.  [2023 Christmas countdown](#org96dc95c)
+2.  [Introduction](#orgf7f1447)
+3.  [Getting Started](#org4c063b0)
+    1.  [Project files](#org36db2ac)
+4.  [Screenshots](#org488cb88)
+5.  [Technologies](#org6a08bde)
+6.  [Related Projects](#org4988e2d)
+7.  [Future](#orgd4d59a3)
+8.  [NB](#orgb9e5d75)
+9.  [Authors](#orga714281)
+10. [Acknowledgements](#org7d29af4)
 
 
-<a id="org14e707f"></a>
+<a id="org96dc95c"></a>
 
 # 2023 Christmas countdown
 
 Anticipate the joy of christmas with an awesome countdown
 
 
-<a id="org92010ab"></a>
+<a id="orgf7f1447"></a>
 
 # Introduction
 
@@ -34,7 +36,7 @@ It is part of the ALX Holiday Challenge with an aim of having "fun,
 learn, and celebrate the holiday season through creativs codng" - ALX.
 
 
-<a id="org5ad7705"></a>
+<a id="org4c063b0"></a>
 
 # Getting Started
 
@@ -42,14 +44,33 @@ learn, and celebrate the holiday season through creativs codng" - ALX.
 -   No signup required.
 
 
-<a id="orga6572ff"></a>
+<a id="org36db2ac"></a>
+
+## Project files
+
+-   [main route](https://github.com/fk2019/ChatSphere/blob/master/web_dynamic/views/main.py)
+-   [html](https://github.com/fk2019/ChatSphere/blob/master/web_dynamic/templates/xmas.html)
+-   [html](https://github.com/fk2019/ChatSphere/blob/master/web_dynamic/static/css/xmas.css)
+-   [js](https://github.com/fk2019/ChatSphere/blob/master/web_dynamic/static/js/xmas.js)
+
+
+<a id="org488cb88"></a>
 
 # Screenshots
 
-[[![img](./static/images/xmas.png "Christmas countdown page")]]
+![img](./static/images/xmas.png "Christmas countdown page")
 
 
-<a id="org82449f4"></a>
+<a id="org6a08bde"></a>
+
+# Technologies
+
+-   The frontend is built with HTML, css, and Javascript.
+-   Backend contains a flask route that is also mirrored in a Nginx server that points to this route.
+-   Site is served from an AWS EC2 instance through Haproxy on another instance. (Loved how ALX would allow us to spin up new servers from AWS and even destroy them during our foundations phase. So I decided to learn AWS cloud to host my projects.
+
+
+<a id="org4988e2d"></a>
 
 # Related Projects
 
@@ -58,23 +79,22 @@ learn, and celebrate the holiday season through creativs codng" - ALX.
 (in progress)
 
 
-<a id="org7ba19d5"></a>
+<a id="orgd4d59a3"></a>
 
 # Future
 
 -   Add additional animations and glow
+-   More joy and functionality
 
 
-<a id="org2d19f7c"></a>
+<a id="orgb9e5d75"></a>
 
 # NB
 
--   Build it in about 4hrs because of time constraints on
-
-my part
+-   Build it in about 4hrs because of time constraints on my part
 
 
-<a id="org8496781"></a>
+<a id="orga714281"></a>
 
 # Authors
 
@@ -87,15 +107,11 @@ Please feel free to reach out to [Francis](https://github.com/fk2019) for any co
 opportunities or inquiries.
 
 
-<a id="org331fce1"></a>
+<a id="org7d29af4"></a>
 
 # Acknowledgements
 
--   ALX: The opportunity to learn, collaborate, and enjoy Software Engineering at
-
-the most transformative institution is amazing. Thanks.
-awesome.
-
+-   ALX: The opportunity to learn, collaborate, and enjoy Software Engineering at the most transformative institution is amazing. Thanks.
 -   Cohort 11 and all peers: Thanks so much for your motivation and support.
 -   \#TeamEmacs: For saving from the hell of exiting vim :)
 
