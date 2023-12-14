@@ -66,7 +66,7 @@ learn, and celebrate the holiday season through creativs codng" - ALX.
 
 -   The frontend is built with HTML, css, and Javascript.
 -   Backend contains a flask route that is also mirrored in a Nginx server that points to this route.
--   Site is served from an AWS EC2 instance through Haproxy on another instance. (Loved how ALX would allow us to spin up new servers from AWS and even destroy them during our foundations phase. So I decided to learn AWS cloud to host my projects.
+-   Site is served from an AWS EC2 instance through Haproxy on another instance. (Loved how ALX would allow us to spin up new servers from AWS and even destroy them during our foundations phase. So I decided to learn AWS cloud to host my projects).
 
 
 <a id="org4988e2d"></a>
