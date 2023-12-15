@@ -28,7 +28,7 @@ client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri="https://techinspire.tech/callback"
+    redirect_uri="https://techinspire.tech/auth/callback"
 )
 
 
@@ -42,12 +42,12 @@ def login_required(fun):
         return fun(*args, **kwargs)
     return fnc
 
-@auth2.route('/login')
+@auth2.route('/auth/login')
 def login():
     return render_template('login.html')
 
 
-@auth2.route("/login/google")
+@auth2.route("/auth/login/google")
 def google_login():
     """Initiate google login. flow.authorization_url retuns a tuple of url and state"""
     authorization_url, state = flow.authorization_url()
@@ -55,7 +55,7 @@ def google_login():
     return redirect(authorization_url)
 
 
-@auth2.route("/login/basic", methods=['POST'])
+@auth2.route("/auth/login/basic", methods=['POST'])
 def basic_login():
     """Initiate basic login."""
     email = request.form.get('email')
@@ -69,7 +69,7 @@ def basic_login():
     return redirect(url_for('auth2.login'))
 
 
-@auth2.route("/callback")
+@auth2.route("/auth/callback")
 def callback():
     """Callback function for google auth"""
     flow.fetch_token(authorization_response=request.url)
@@ -123,19 +123,19 @@ def send_email(user_email, name):
         mail.send(msg)
 
 
-@auth2.route('/confirm/<string:token>')
+@auth2.route('/auth/confirm/<string:token>')
 def confirm_email(token):
     flash('Email confirmed successfully!')
     return redirect(url_for('auth2.login'))
 
 
-@auth2.route('/register')
+@auth2.route('/auth/register')
 def register():
     """render register template"""
     return render_template('register.html')
 
 
-@auth2.route('/register', methods=['POST'])
+@auth2.route('/auth/register', methods=['POST'])
 def register_user_post():
     """basic user registration"""
     username = request.form.get('username')
@@ -157,7 +157,7 @@ def register_user_post():
     return render_template('confirm.html')
 
 
-@auth2.route("/logout")
+@auth2.route("/auth/logout")
 def logout():
     """logout and clear session"""
     session.clear()
