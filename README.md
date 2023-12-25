@@ -1,23 +1,23 @@
 
 # Table of Contents
 
-1.  [Introduction](#orgb4625b6)
-2.  [Getting Started](#orgf673a47)
-3.  [Screenshots](#org21583db)
-4.  [Technologies](#org4b294ca)
-5.  [API](#org87bcb70)
-    1.  [messages](#org598443d)
-    2.  [conversations](#orgc881b72)
-    3.  [users](#orgc22dee8)
-6.  [Related Projects](#orgb582ce4)
-7.  [Future](#orgada7e6f)
-8.  [Authors](#orgadd46f1)
-9.  [Acknowledgements](#org21ca96e)
-10. [License](#orga73bebe)
+1.  [Introduction](#orgcf91c47)
+2.  [Getting Started](#org7931d92)
+3.  [Screenshots](#org7be8da8)
+4.  [Technologies](#org8b553e5)
+5.  [API](#org5485887)
+    1.  [messages](#orga638aa5)
+    2.  [conversations](#org90ee959)
+    3.  [users](#orgbf80061)
+6.  [Related Projects](#org57ebf30)
+7.  [Future](#org42a8608)
+8.  [Authors](#org92f4c69)
+9.  [Acknowledgements](#org7d4c2eb)
+10. [License](#org291ba77)
 
 
 
-<a id="orgb4625b6"></a>
+<a id="orgcf91c47"></a>
 
 # Introduction
 
@@ -27,40 +27,37 @@ Experience seamless connections with the most secure and reliable messaging plat
 This is my personal messaging project that allows people to communicate with each other with ease. They can share simple messages and even images during a conversation. It is a simple but complex project that propelled me to learn about Software Engineering.
 
 
-<a id="orgf673a47"></a>
+<a id="org7931d92"></a>
 
 # Getting Started
 
 1.  Visit the ChatSphere page
-2.  Create account or login Oaut or with your custom credentials
+2.  Create account or login using Oauth or with your custom credentials
 
 
-<a id="org21583db"></a>
+<a id="org7be8da8"></a>
 
 # Screenshots
 
 
-<a id="org4b294ca"></a>
+<a id="org8b553e5"></a>
 
 # Technologies
 
 -   Frontend: HTML, CSS, JQuery, JavaScript
--   Backend: Flask - (create dynamic web pages by serving HTML templates using Jinja2, Handle Restful API requests, connect to DB, perform CRUD operations,
-
-and implement authentication and authorization)
-
+-   Backend: Flask - (create dynamic web pages by serving HTML templates using Jinja2, Handle Restful API requests, connect to DB, perform CRUD operations, and implement authentication and authorization)
 -   Storage: MySQL (version 5.7\*) and Redis; the latter for caching. SQLAlchemy as the ORM of choice.
 -   Authentication and authorization: Oauth2(google<sub>auth</sub><sub>oauthlib</sub>, google.oauth2 libraries, etc.) and Flask sessions among others.
 
 
-<a id="org87bcb70"></a>
+<a id="org5485887"></a>
 
 # API
 
 The frontend communicates with the backend storage via a Flask API. Various endpoints have been configured to suite the needs of the project. 
 
 
-<a id="org598443d"></a>
+<a id="orga638aa5"></a>
 
 ## messages
 
@@ -78,15 +75,15 @@ A conversation can only be between two or more participants. As such, it would b
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">HTTP Method</td>
-<td class="org-left">Endpoint</td>
-<td class="org-left">Purpose</td>
+<td class="org-left">\*\*\*HTTP Method</td>
+<td class="org-left">\*\*\*Endpoint</td>
+<td class="org-left">\*\*\*Purpose</td>
 </tr>
 
 
 <tr>
 <td class="org-left">-----------</td>
-<td class="org-left">----------------------------------------------------------------</td>
+<td class="org-left">---------------------------------------------------------------</td>
 <td class="org-left">------------------------------------</td>
 </tr>
 
@@ -121,7 +118,7 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="orgc881b72"></a>
+<a id="org90ee959"></a>
 
 ## conversations
 
@@ -137,16 +134,16 @@ A conversation can only be between two or more participants. As such, it would b
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">HTTP Method</td>
-<td class="org-left">Endpoint</td>
-<td class="org-left">Purpose</td>
+<td class="org-left">\*\*\*HTTP Method</td>
+<td class="org-left">\*\*\*Endpoint</td>
+<td class="org-left">\*\*\*Purpose</td>
 </tr>
 
 
 <tr>
 <td class="org-left">-----------</td>
-<td class="org-left">----------------------------------------------------------------</td>
-<td class="org-left">------------------------------------</td>
+<td class="org-left">------------------------------------------</td>
+<td class="org-left">----------------------------------------------</td>
 </tr>
 
 
@@ -187,7 +184,7 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="orgc22dee8"></a>
+<a id="orgbf80061"></a>
 
 ## users
 
@@ -203,16 +200,16 @@ A conversation can only be between two or more participants. As such, it would b
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">HTTP Method</td>
-<td class="org-left">Endpoint</td>
-<td class="org-left">Purpose</td>
+<td class="org-left">\*\*\*HTTP Method</td>
+<td class="org-left">\*\*\*Endpoint</td>
+<td class="org-left">\*\*\*Purpose</td>
 </tr>
 
 
 <tr>
 <td class="org-left">-----------</td>
-<td class="org-left">----------------------------------------------------------------</td>
-<td class="org-left">------------------------------------</td>
+<td class="org-left">-------------------------------</td>
+<td class="org-left">--------------------------------------</td>
 </tr>
 
 
@@ -267,17 +264,17 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="orgb582ce4"></a>
+<a id="org57ebf30"></a>
 
 # Related Projects
 
 
-<a id="orgada7e6f"></a>
+<a id="org42a8608"></a>
 
 # Future
 
 
-<a id="orgadd46f1"></a>
+<a id="org92f4c69"></a>
 
 # Authors
 
@@ -285,7 +282,7 @@ Francis Kamau is a skilled Software Engineer trained by ALX.
 Feel free to reach out to Francis for any opportunities or collaborations.
 
 
-<a id="org21ca96e"></a>
+<a id="org7d4c2eb"></a>
 
 # Acknowledgements
 
@@ -293,7 +290,7 @@ Feel free to reach out to Francis for any opportunities or collaborations.
 -   \#TeamEmacs: Who needs the hell of exiting Vim?
 
 
-<a id="orga73bebe"></a>
+<a id="org291ba77"></a>
 
 # License
 
