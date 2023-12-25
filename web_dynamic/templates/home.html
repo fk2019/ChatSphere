@@ -11,6 +11,7 @@
     <link href='https://unpkg.com/css.gg@2.0.0/icons/css/chevron-right.css' rel='stylesheet'>
     <link href='https://unpkg.com/css.gg@2.0.0/icons/css/log-out.css' rel='stylesheet'>
     <link href='https://unpkg.com/css.gg@2.0.0/icons/css/menu.css' rel='stylesheet'>
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/arrow-right.css' rel='stylesheet'>
     <title>ChatSphere | home</title>
   </head>
   <body>
@@ -27,24 +28,39 @@
       <div class="chat-area">
 	<div class="chat-header">
 	  <div class="user-header"></div>
-	  <div class="current-user">
-	    <div class="user-image"></div>
-	    <div class="user">{{ session['name'] }}</div>
-	    <div class="user-menu">
-	      <div class="menu">
-		<i class="gg-menu"></i>
+	  <div class="right-nav">
+	    <div class="current-user">
+	      <div class="user-image"></div>
+	      <p class="user">{{ session['name'] }}</p>
+	      <div class="user-menu">
+		<div class="menu">
+		  <i class="gg-menu"></i>
+		</div>
+		<ul class="menu-list">
+		  <li>
+		    <input type="file" id="imageInput" style="display:none;">
+		    <a href="#" id="uploadButton"><p>Upload profile picture</p></a>
+		  </li>
+		  <li>
+		    <a href="#" class="more-settings"><p>More settings</p></a>
+		  </li>
+		</ul>
 	      </div>
-	      <ul class="menu-list">
-		<li>
-		  <input type="file" id="imageInput" style="display:none;">
-		  <a href="#" id="uploadButton"><p>Upload profile picture</p></a>
-		</li>
-		<li><p>Change username</p></li>
-	      </ul>
 	    </div>
+	    <div class="header-button"><a href="{{ url_for('auth2.logout')}}"><i class="gg-log-out"></i></a></div>
 	  </div>
-	  <div class="header-button"><a href="{{ url_for('auth2.logout')}}"><i class="gg-log-out"></i></a></div>
 	</div>
+	<form class="settings">
+	  <button type="button" class="arrow"><i class="gg-arrow-right"></i></button>
+	  <label for"username">Username</label>
+	  <div class="form-input">
+	    <input type="text" name="username" placeholder="{{ session['name']}}" autofocus>
+	    <button title="click to save"><i class="gg-chevron-right"></i></button>
+	  </div>
+	  <p>Privacy</p>
+	  <p>Notifications</p>
+	  <p>Themes</p>
+	</form>
 	<div class="messages" id="messages-container">
                 <!-- Messages will be dynamically added here -->
 
@@ -55,7 +71,7 @@
 	  <label for="file-input" class="file-label"><i class="gg-image"></i></label>
 	  <input type="file" id="file-input" accept="image/*" onChange='toggleSendButton()'>
 
-	  <button id="send-button" onclick="sendMessage()"><i class="gg-chevron-right"></i></button>
+	  <button id="send-button"><i class="gg-chevron-right"></i></button>
 	</div>
 
       </div>

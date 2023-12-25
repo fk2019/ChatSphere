@@ -4,7 +4,15 @@ document.addEventListener('DOMContentLoaded', function () {
   uploadButton.on('click', () => {
     imageInput.click();
   });
-
+  const form = document.querySelector('.settings');
+  const formButton = $('.arrow');
+  formButton.on('click', () => {
+      form.style.display = 'none';
+    });
+  const more = $('.more-settings');
+  more.on('click', () => {
+    form.style.display = 'flex';
+  });
   const usersURL = 'https://techinspire.tech/api/v1/users/';
   const messageURL = 'https://techinspire.tech/api/v1/conversations/';
   let currentUser;
@@ -176,6 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
     messagesContainer.appendChild(messageDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
+
   const setMessageClass = (sender, messageDiv) => {
     if (sender === currentUser.id) {
       messageDiv.style.marginTop = '10px';
@@ -241,8 +250,11 @@ document.addEventListener('DOMContentLoaded', function () {
         .fail((er) => console.error('Error:', er));
     }
   };
-
-  sendMessage = function () {
+  const sendButton = $('#send-button');
+  sendButton.on('click', () => {
+    sendMessage();
+  })
+  const sendMessage = function () {
     const message = messageInput.value.trim();
     let isFile = fileInput.files.length > 0;
     if (message.length > 1 && convId === undefined && !isFile) {
@@ -325,8 +337,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .fail((er) => console.error('Error', er));
     }
   }
-
-
 
   window.toggleSendButton = function() {
     const sendButton = document.getElementById('send-button');

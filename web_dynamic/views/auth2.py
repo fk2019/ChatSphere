@@ -1,4 +1,5 @@
 import os
+import uuid
 import pathlib
 import requests
 from flask import Blueprint, render_template, request, redirect, flash, url_for, session, abort, current_app
@@ -8,6 +9,7 @@ from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
 import google.auth.transport.requests
 from models.user import User
+from models.redis import redis_client
 from models import storage
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
@@ -64,6 +66,12 @@ def basic_login():
         email=email).first()
     if user and check_password_hash(user.password, password):
         session['name'] = user.user_name
+        token = uuid.uuid4()
+        key = 'auth_{}'.format(token)
+        print(key)
+        redis_client.set(key, user.id)
+        redis_client.expire(key, 24 * 60 * 60)
+        session['token'] = token
         return redirect(url_for('auth2.protected_area'))
     flash('Please try again')
     return redirect(url_for('auth2.login'))
@@ -160,6 +168,10 @@ def register_user_post():
 @auth2.route("/auth/logout")
 def logout():
     """logout and clear session"""
+    token =  session.get('token')
+    if token:
+        key = 'auth_{}'.format(token)
+        redis_client.delete(key)
     session.clear()
     return redirect("/")
 
