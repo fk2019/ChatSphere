@@ -21,30 +21,30 @@ This is my personal messaging project that allows people to communicate with eac
 The frontend communicates with the backend storage via a Flask API. Various endpoints have been configured to suite the needs of the project. 
 ** messages
 A conversation can only be between two or more participants. As such, it would be best to group messages by a conversation such that two participants interact with each other through a Conversation object containing such participants and their messages.
-  | ***HTTP Method | ***Endpoint                                                      | ***Purpose                           |
-  | -----------    | ---------------------------------------------------------------  | ------------------------------------ |
-  | GET            | api/v1/conversations/<conversation_id>/messages                  | Retrieve list of all Message objects |
-  | POST           | api/v1/conversations/<conversation_id>/messages                  | Post a Message object                |
-  | DELETE         | api/v1/conversations/<conversation_id>/messages/<message_id>     | Delete a Message object              |
-  | POST           | api/v1/conversations/<conversation_id>/<sender_id>/messages/file | Post a Message object with file      |
+  | HTTP Method | Endpoint                                                         | Purpose                              |
+  | ----------- | -------------------------------------------------------------    | -----------------------------------  |
+  | GET         | api/v1/conversations/<conversation_id>/messages                  | Retrieve list of all Message objects |
+  | POST        | api/v1/conversations/<conversation_id>/messages                  | Post a Message object                |
+  | DELETE      | api/v1/conversations/<conversation_id>/messages/<message_id>     | Delete a Message object              |
+  | POST        | api/v1/conversations/<conversation_id>/<sender_id>/messages/file | Post a Message object with file      |
 ** conversations
-  | ***HTTP Method | ***Endpoint                                | ***Purpose                                     |
-  | -----------    | ------------------------------------------ | ---------------------------------------------- |
-  | GET            | api/v1/users/conversations/<uder_id>       | Retrieve list of all Conversation objects      |
-  | GET            | api/v1/conversations/<user1_id>/<user2_id> | Retrieve a Conversation object by participants |
-  | GET            | api/v1/conversations/<conversation_id>     | Retrieve a Conversation object by id           |
-  | POST           | api/v1/conversations/                      | Post a Conversation object                     |
-  | DELETE         | api/v1/conversations/<conversation_id>     | Delete a Conversation object                   |
+  | HTTP Method | Endpoint                                   | Purpose                                        |
+  | ----------- | ------------------------------------------ | ---------------------------------------------- |
+  | GET         | api/v1/users/conversations/<uder_id>       | Retrieve list of all Conversation objects      |
+  | GET         | api/v1/conversations/<user1_id>/<user2_id> | Retrieve a Conversation object by participants |
+  | GET         | api/v1/conversations/<conversation_id>     | Retrieve a Conversation object by id           |
+  | POST        | api/v1/conversations/                      | Post a Conversation object                     |
+  | DELETE      | api/v1/conversations/<conversation_id>     | Delete a Conversation object                   |
 ** users
-  | ***HTTP Method | ***Endpoint                     | ***Purpose                             |
-  | -----------    | ------------------------------- | -------------------------------------- |
-  | GET            | api/v1/users                    | Retrieve list of all User objects      |
-  | GET            | api/v1/users/<user_id>          | Retrieve a User object by user id      |
-  | GET            | api/v1/users/<user_id>/image    | Retrieve a User object's profile image |
-  | POST           | api/v1/users                    | Post a User object                     |
-  | PUT            | api/v1/users/<user_id>          | Update a User object                   |
-  | PUT            | api/v1/users/<user_id>/upload   | Update a User object's image           |
-  | DELETE         | api/v1/users/<user_id>          | Delete a User object                   |
+  | HTTP Method | Endpoint                        | Purpose                                |
+  | ----------- | ------------------------------- | -------------------------------------- |
+  | GET         | api/v1/users                    | Retrieve list of all User objects      |
+  | GET         | api/v1/users/<user_id>          | Retrieve a User object by user id      |
+  | GET         | api/v1/users/<user_id>/image    | Retrieve a User object's profile image |
+  | POST        | api/v1/users                    | Post a User object                     |
+  | PUT         | api/v1/users/<user_id>          | Update a User object                   |
+  | PUT         | api/v1/users/<user_id>/upload   | Update a User object's image           |
+  | DELETE      | api/v1/users/<user_id>          | Delete a User object                   |
 
 
 * Related Projects

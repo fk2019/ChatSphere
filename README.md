@@ -1,23 +1,23 @@
 
 # Table of Contents
 
-1.  [Introduction](#orgcf91c47)
-2.  [Getting Started](#org7931d92)
-3.  [Screenshots](#org7be8da8)
-4.  [Technologies](#org8b553e5)
-5.  [API](#org5485887)
-    1.  [messages](#orga638aa5)
-    2.  [conversations](#org90ee959)
-    3.  [users](#orgbf80061)
-6.  [Related Projects](#org57ebf30)
-7.  [Future](#org42a8608)
-8.  [Authors](#org92f4c69)
-9.  [Acknowledgements](#org7d4c2eb)
-10. [License](#org291ba77)
+1.  [Introduction](#org07e530e)
+2.  [Getting Started](#orgdca0e39)
+3.  [Screenshots](#org6e97342)
+4.  [Technologies](#orga3d11aa)
+5.  [API](#orgddfecfb)
+    1.  [messages](#orga0dc3b3)
+    2.  [conversations](#org172a840)
+    3.  [users](#orgbdd8b4d)
+6.  [Related Projects](#org23ef06f)
+7.  [Future](#org3397f9a)
+8.  [Authors](#org864f8d3)
+9.  [Acknowledgements](#org7b1b978)
+10. [License](#org24ab9f0)
 
 
 
-<a id="orgcf91c47"></a>
+<a id="org07e530e"></a>
 
 # Introduction
 
@@ -27,7 +27,7 @@ Experience seamless connections with the most secure and reliable messaging plat
 This is my personal messaging project that allows people to communicate with each other with ease. They can share simple messages and even images during a conversation. It is a simple but complex project that propelled me to learn about Software Engineering.
 
 
-<a id="org7931d92"></a>
+<a id="orgdca0e39"></a>
 
 # Getting Started
 
@@ -35,12 +35,12 @@ This is my personal messaging project that allows people to communicate with eac
 2.  Create account or login using Oauth or with your custom credentials
 
 
-<a id="org7be8da8"></a>
+<a id="org6e97342"></a>
 
 # Screenshots
 
 
-<a id="org8b553e5"></a>
+<a id="orga3d11aa"></a>
 
 # Technologies
 
@@ -50,14 +50,14 @@ This is my personal messaging project that allows people to communicate with eac
 -   Authentication and authorization: Oauth2(google<sub>auth</sub><sub>oauthlib</sub>, google.oauth2 libraries, etc.) and Flask sessions among others.
 
 
-<a id="org5485887"></a>
+<a id="orgddfecfb"></a>
 
 # API
 
 The frontend communicates with the backend storage via a Flask API. Various endpoints have been configured to suite the needs of the project. 
 
 
-<a id="orga638aa5"></a>
+<a id="orga0dc3b3"></a>
 
 ## messages
 
@@ -75,16 +75,16 @@ A conversation can only be between two or more participants. As such, it would b
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">\*\*\*HTTP Method</td>
-<td class="org-left">\*\*\*Endpoint</td>
-<td class="org-left">\*\*\*Purpose</td>
+<td class="org-left">HTTP Method</td>
+<td class="org-left">Endpoint</td>
+<td class="org-left">Purpose</td>
 </tr>
 
 
 <tr>
 <td class="org-left">-----------</td>
-<td class="org-left">---------------------------------------------------------------</td>
-<td class="org-left">------------------------------------</td>
+<td class="org-left">-------------------------------------------------------------</td>
+<td class="org-left">-----------------------------------</td>
 </tr>
 
 
@@ -118,7 +118,7 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="org90ee959"></a>
+<a id="org172a840"></a>
 
 ## conversations
 
@@ -134,9 +134,9 @@ A conversation can only be between two or more participants. As such, it would b
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">\*\*\*HTTP Method</td>
-<td class="org-left">\*\*\*Endpoint</td>
-<td class="org-left">\*\*\*Purpose</td>
+<td class="org-left">HTTP Method</td>
+<td class="org-left">Endpoint</td>
+<td class="org-left">Purpose</td>
 </tr>
 
 
@@ -184,7 +184,7 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="orgbf80061"></a>
+<a id="orgbdd8b4d"></a>
 
 ## users
 
@@ -200,9 +200,9 @@ A conversation can only be between two or more participants. As such, it would b
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">\*\*\*HTTP Method</td>
-<td class="org-left">\*\*\*Endpoint</td>
-<td class="org-left">\*\*\*Purpose</td>
+<td class="org-left">HTTP Method</td>
+<td class="org-left">Endpoint</td>
+<td class="org-left">Purpose</td>
 </tr>
 
 
@@ -264,17 +264,17 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="org57ebf30"></a>
+<a id="org23ef06f"></a>
 
 # Related Projects
 
 
-<a id="org42a8608"></a>
+<a id="org3397f9a"></a>
 
 # Future
 
 
-<a id="org92f4c69"></a>
+<a id="org864f8d3"></a>
 
 # Authors
 
@@ -282,7 +282,7 @@ Francis Kamau is a skilled Software Engineer trained by ALX.
 Feel free to reach out to Francis for any opportunities or collaborations.
 
 
-<a id="org7d4c2eb"></a>
+<a id="org7b1b978"></a>
 
 # Acknowledgements
 
@@ -290,7 +290,7 @@ Feel free to reach out to Francis for any opportunities or collaborations.
 -   \#TeamEmacs: Who needs the hell of exiting Vim?
 
 
-<a id="org291ba77"></a>
+<a id="org24ab9f0"></a>
 
 # License
 
