@@ -1,0 +1,59 @@
+#+TITLE: ChatSphere
+#+DESCRIPTION: An org document for the ChatSphere readme file
+#+AUTHOR: Francis Kamau
+
+* Introduction
+Experience the full spectrum of connection: Chatsphere - Where every exchange is a visual symphony.
+Experience seamless connections with the most secure and reliable messaging platform.Use ChatSphere to start and join conversations.
+
+This is my personal messaging project that allows people to communicate with each other with ease. They can share simple messages and even images during a conversation. It is a simple but complex project that propelled me to learn about Software Engineering.
+* Getting Started
+1. Visit the ChatSphere page
+2. Create account or login Oaut or with your custom credentials
+
+* Screenshots
+* Technologies
++ Frontend: HTML, CSS, JQuery, JavaScript
++ Backend: Flask - (create dynamic web pages by serving HTML templates using Jinja2, Handle Restful API requests, connect to DB, perform CRUD operations,
+and implement authentication and authorization)
++ Storage: MySQL (version 5.7*) and Redis; the latter for caching. SQLAlchemy as the ORM of choice.
++ Authentication and authorization: Oauth2(google_auth_oauthlib, google.oauth2 libraries, etc.) and Flask sessions among others.
+* API
+The frontend communicates with the backend storage via a Flask API. Various endpoints have been configured to suite the needs of the project. 
+** messages
+A conversation can only be between two or more participants. As such, it would be best to group messages by a conversation such that two participants interact with each other through a Conversation object containing such participants and their messages.
+  | HTTP Method | Endpoint                                                         | Purpose                              |
+  | ----------- | ---------------------------------------------------------------- | ------------------------------------ |
+  | GET         | api/v1/conversations/<conversation_id>/messages                  | Retrieve list of all Message objects |
+  | POST        | api/v1/conversations/<conversation_id>/messages                  | Post a Message object                |
+  | DELETE      | api/v1/conversations/<conversation_id>/messages/<message_id>     | Delete a Message object              |
+  | POST        | api/v1/conversations/<conversation_id>/<sender_id>/messages/file | Post a Message object with file      |
+** conversations
+  | HTTP Method | Endpoint                                                         | Purpose                                        |
+  | ----------- | ---------------------------------------------------------------- | ------------------------------------           |
+  | GET         | api/v1/users/conversations/<uder_id>                             | Retrieve list of all Conversation objects      |
+  | GET         | api/v1/conversations/<user1_id>/<user2_id>                       | Retrieve a Conversation object by participants |
+  | GET         | api/v1/conversations/<conversation_id>                           | Retrieve a Conversation object by id           |
+  | POST        | api/v1/conversations/                                            | Post a Conversation object                     |
+  | DELETE      | api/v1/conversations/<conversation_id>                           | Delete a Conversation object                   |
+** users
+  | HTTP Method | Endpoint                                                         | Purpose                                |
+  | ----------- | ---------------------------------------------------------------- | ------------------------------------   |
+  | GET         | api/v1/users                                                     | Retrieve list of all User objects      |
+  | GET         | api/v1/users/<user_id>                                           | Retrieve a User object by user id      |
+  | GET         | api/v1/users/<user_id>/image                                     | Retrieve a User object's profile image |
+  | POST        | api/v1/users                                                     | Post a User object                     |
+  | PUT         | api/v1/users/<user_id>                                           | Update a User object                   |
+  | PUT         | api/v1/users/<user_id>/upload                                    | Update a User object's image           |
+  | DELETE      | api/v1/users/<user_id>                                           | Delete a User object                   |
+
+
+* Related Projects
+* Future
+* Authors
+Francis Kamau is a skilled Software Engineer trained by ALX.
+Feel free to reach out to Francis for any opportunities or collaborations.
+* Acknowledgements
++ ALX: Thanks Julien and ALX mentors for the opportunity to learn, upskill and do hard things at ALX. Much thanks to all peers for the support.
++ #TeamEmacs: Who needs the hell of exiting Vim?
+* License
