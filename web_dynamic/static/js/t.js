@@ -76,17 +76,34 @@ document.addEventListener('DOMContentLoaded', function () {
   const typingIndicator = document.getElementById('typing-indicator');
   const messageInput = document.getElementById('message-input');
   const fileInput = document.getElementById('file-input');
-  
+
   const header = document.querySelector('.chat-header');
   const sideBar = document.querySelector('.side-bar');
   const userPic = document.createElement('div');
   const userP = document.createElement('p');
   const userHeader = document.querySelector('.user-header');
-//  const socket = io();
+  const socket = io();
   let convId;
   let rec;
   let sender;
-  //socket.connect('http:16.16.162.146');
+  socket.connect('https://techinspire.tech');
+
+  socket.on('receivedMessage', (message) => {
+    console.log('receiving message', message);
+    const content = message.message;
+    const time = message.timestamp;
+    const sender = message.sender;
+    const messageA = [message]
+    console.log(currentUser.id, message.sender_id);
+    displayMessage(messageA);
+  });
+  socket.on('receivedFile', (message) => {
+    console.log('filea', message);
+    displayFile([message]);
+  });
+  socket.on('disconnect', () => {
+    console.log('disconnect');
+  });
   const getImage = (url) => {
     $.get(url).done((data) => {
       const b = new Blob([data]);
@@ -146,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
     sender = currentUser;
     let messages = [];
     const messageUrl = messageURL + `${convId}/messages`;
+    //socket message
     if (convId != undefined) {
     $.get(messageUrl).done((data) => {
       $.each(data, (i, msg) => {
@@ -153,7 +171,9 @@ document.addEventListener('DOMContentLoaded', function () {
         mess.push(msg);
         messages.push(mess);
       });
-      messages.forEach((message) => displayMessage(message, currentUser));
+      messages.forEach((message) => {
+        displayMessage(message, currentUser);
+      });
     });
     }
 
@@ -162,25 +182,45 @@ document.addEventListener('DOMContentLoaded', function () {
     messagesContainer.innerHTML = '';
     displayHeader(user, userHeader, userPic, userP);
   }
+  // display File to chat area
+  const displayFile = (messageArray, currentUser) => {
+    const messageDiv = document.createElement('div');
+    const fileId = messageArray[0].id;
+    console.log('msg', messageArray[0]);
+    const blob = new Blob([fl]);
+    //const getUrl = URL.createObjectURL(blob);
 
-  const displayFile = (messageArray, currentUser, messageDiv) => {
-    const fl = messageArray[0].file;
-    const getUrl = messageURL + `${convId}/file/${fl}`;
+    const getUrl = messageURL + `${convId}/file/${fileId}`;
     const pdata = {
       path: fl,
     };
+    //ad set class
+    setMessageClass(messageArray[0].sender_id, messageDiv);
     const thumbnailElement = document.createElement('img');
+    //edit url
     thumbnailElement.src = getUrl
     thumbnailElement.classList.add('uploaded-image');
+    const ftime = getTime(messageArray[0].timestamp);
+    const pTime = document.createElement('p');
+    pTime.classList.add('time');
+    const m = document.createTextNode(ftime);
+    pTime.appendChild(m);
     messageDiv.appendChild(thumbnailElement);
+    messageDiv.appendChild(pTime);
     messagesContainer.appendChild(messageDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
-  const appendMessage = (messageDiv, content) => {
-    const p = document.createElement('p');
+  // appendMessage to main div
+  const appendMessage = (messageDiv, content, time) => {
+    const pMsg = document.createElement('p');
+    const pTime = document.createElement('p');
+    pTime.classList.add('time');
     const m = document.createTextNode(content);
-    p.appendChild(m);
-    messageDiv.appendChild(p);
+    const m2 = document.createTextNode(time);
+    pMsg.appendChild(m);
+    pTime.appendChild(m2);
+    messageDiv.appendChild(pMsg);
+    messageDiv.appendChild(pTime);
     messagesContainer.appendChild(messageDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
@@ -194,59 +234,59 @@ document.addEventListener('DOMContentLoaded', function () {
       messageDiv.classList.add('received-message');
     }
   }
+  // get local time
+  const getTime = (serverTime) => {
+    const time = new Date(serverTime);
+    const tzone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const ftime = time.toLocaleTimeString(undefined, {tzone, hour: '2-digit', minute: '2-digit', hour12: false });
+    return ftime;
+  };
   // Function to display a message in the chat area
   function displayMessage(messageArray, currentUser, file) {
     const messageDiv = document.createElement('div');
     const content = messageArray[0].content;
+    const ftime = getTime(messageArray[0].timestamp);
     const sender = messageArray[0].sender_id;
-    fl = messageArray[0].file
+    fl = messageArray[0].isFile
+    console.log('displaymessage', messageArray[0]);
     setMessageClass(sender, messageDiv);
     if (!file && !fl) {
-      appendMessage(messageDiv, content);
+      appendMessage(messageDiv, content, ftime);
     } else {
       displayFile(messageArray, currentUser, messageDiv);
     }
   }
-  const displaySentMessage = (messageArray) => {
-    const messageDiv = document.createElement('div');
-    const content = messageArray[0];
-    const sender = messageArray[1];
-    setMessageClass(sender, messageDiv);
-    appendMessage(messageDiv, content);
-  }
-  const displaySentFile = (messageArray) => {
-    const messageDiv = document.createElement('div');
-    const sender = messageArray[1];
-    setMessageClass(sender, messageDiv);
-    const fl = messageArray[0];
-    const blob = new Blob([fl]);
-    const getUrl = URL.createObjectURL(blob);
-    const thumbnailElement = document.createElement('img');
-    thumbnailElement.src = getUrl
-    thumbnailElement.classList.add('uploaded-image');
-    messageDiv.appendChild(thumbnailElement);
-    messagesContainer.appendChild(messageDiv);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }
+
   // Function to send a message
   const send = (message, convId) => {
     if (message !== '') {
-      const messageArray = [message, currentUser.id];
-      //  socket.emit('message', message);
-      displaySentMessage(messageArray)
-      messageInput.value = '';
 
       const postUrl = messageURL + `${convId}/messages`;
+      const time = new Date();
+
+      const messageArray = [message, currentUser.id, time];
+      const messageData = {
+        content: message,
+        timestamp: time,
+        sender_id: currentUser.id,
+      };
+      socket.emit('sendMessage', messageData);
+
+      messageInput.value = '';
+
       let sdata = {
         content: message,
         sender_id: currentUser.id,
+        timestamp: time,
       };
       sdata = JSON.stringify(sdata);
       $.post({
         url: postUrl,
         data: sdata,
         headers: { 'Content-Type': 'application/json' },
-      }).done((data) => console.log('data', data))
+      }).done((data) => {
+        console.log('data', data);
+      })
         .fail((er) => console.error('Error:', er));
     }
   };
@@ -257,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const sendMessage = function () {
     const message = messageInput.value.trim();
     let isFile = fileInput.files.length > 0;
-    if (message.length > 1 && convId === undefined && !isFile) {
+    if (message.length > 0 && convId === undefined && !isFile) {
       // create a conversatonId
       let sdata = {
         participants: [currentUser.id, rec.id],
@@ -273,7 +313,7 @@ document.addEventListener('DOMContentLoaded', function () {
         send(message, convId);
         toggleSendButton();
       });
-    } else if (message.length > 1 && !isFile) {
+    } else if (message.length > 0 && convId && !isFile) {
       send(message, convId);
       toggleSendButton();
     } else if (isFile && convId === undefined) {
@@ -289,11 +329,9 @@ document.addEventListener('DOMContentLoaded', function () {
         convId = data.id;
         messagesContainer.innerHTML = '';
 
-        //paste heere
         const file = fileInput.files[0];
         const messageArray = [file, currentUser.id];
-
-        displaySentFile(messageArray)
+        socket.emit('sendFile', messageArray);
         const fileUrl = messageURL + `${convId}/${currentUser.id}/messages/file`;
         const fData = new FormData();
         fData.append('file', file);
@@ -313,11 +351,8 @@ document.addEventListener('DOMContentLoaded', function () {
           .fail((er) => console.error('Error', er));
       });
     } else {
-//
-      const file = fileInput.files[0];
-      const messageArray = [file, currentUser.id];
 
-      displaySentFile(messageArray)
+      const file = fileInput.files[0];
       const fileUrl = messageURL + `${convId}/${currentUser.id}/messages/file`;
       const fData = new FormData();
       fData.append('file', file);
@@ -330,6 +365,13 @@ document.addEventListener('DOMContentLoaded', function () {
         contentType: false,
         processData: false,
       }).done((data) => {
+        const messageArray = {
+          id: data.id,
+          sender_id: currentUser.id,
+          timestamp: new Date(),
+        };
+      socket.emit('sendFile', messageArray);
+
         console.log(data);
         fileInput.value = ''
         toggleSendButton()

@@ -9,10 +9,12 @@ class Message(BaseModel, Base):
     if models.storage_t == "db":
         __tablename__ = "messages"
         content = Column(String(1024))
-        file = Column(String(128))
+        filepath = Column(String(128))
+        isFile = Column(String(60))
         conversation_id = Column(String(60), ForeignKey('conversations.id'))
         conversation = relationship('Conversation', back_populates='messages')
         sender_id = Column(String(60), ForeignKey('users.id'))
+        timestamp = Column(String(60))
     else:
         first_name = ""
         last_name = ""

@@ -298,6 +298,7 @@ button {
     display: flex;
     flex-direction: column;
     margin-left: auto;
+    gap: 0.5 rem;
 }
 .sent-message > p{
     color: #FFA500;
@@ -311,11 +312,23 @@ button {
     display: flex;
     flex-direction: column;
     align-self: flex-start;
+    gap: 0.5 rem;
 }
 .received-message > p {
     color: #800080;
 }
-
+.received-message > .time {
+    color: rgba(128, 0, 128, 0.6);
+}
+.sent-message > .time {
+    color: rgba(255, 165, 0, 0.7);
+}
+.time {
+    font-size: 0.6rem;
+    margin-left: auto;
+    margin-bottom: 0;
+    margin-right: 0;
+}
 .file-label {
     padding: 5px 10px;
     cursor: pointer;
@@ -335,6 +348,7 @@ input[type="file"] {
 .uploaded-image {
     width: 100%;
     border-radius: 5px;
+    padding-bottom: 0.5rem;
 }
 
 p {

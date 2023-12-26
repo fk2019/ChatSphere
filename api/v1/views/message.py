@@ -7,6 +7,7 @@ from models.user import User
 from models.message import Message
 from models.conversation import Conversation
 import os
+import uuid
 from werkzeug.utils import secure_filename
 
 @app_views.route('/conversations/<string:conversation_id>/messages', strict_slashes=False)
@@ -52,28 +53,36 @@ def post_message_image(conversation_id, sender_id):
     filename = secure_filename(filename)
     content_type = file.content_type
     folder = current_app.config.get('UPLOAD_FOLDER')
-    path = os.path.join(folder, filename)
-    file.save(path)
-    data = {'file': filename, 'sender_id': sender_id}
+    path = uuid.uuid4()
+    local_path = os.path.join(folder, str(path))
+    file.save(local_path)
+    data = {'filepath': path, 'sender_id': sender_id, 'isFile': True}
     conv = storage.get(Conversation, conversation_id)
     if not conv:
         abort(404)
-    conv.messages.append(Message(**data))
+    msg = Message(**data)
+    conv.messages.append(msg)
+    print('post file id', msg.id)
     conv.save()
     if conv:
-        return (jsonify({"status": "file uploaded successfully"}), 200)
+        return (jsonify({"id": msg.id}), 200)
     abort(404)
 
 
-@app_views.route('/conversations/<string:conversation_id>/file/<string:file_name>', strict_slashes=False)
-def message_file(conversation_id, file_name):
+@app_views.route('/conversations/<string:conversation_id>/file/<string:file_id>', strict_slashes=False)
+def message_file(conversation_id, file_id):
     """Retrieve message file"""
     obj = storage.get(Conversation, conversation_id)
     if obj is None:
         abort(404)
-    filename = secure_filename(file_name)
+    file_obj = storage.get(Message, file_id)
+    print('fileid', file_id)
+#    print(file_obj.to_dict())
+    if file_obj is None:
+        abort(404)
+    filepath = file_obj.filepath
     folder = current_app.config.get('UPLOAD_FOLDER')
-    return (send_from_directory(folder, filename), 200)
+    return (send_from_directory(folder, filepath), 200)
 
 @app_views.route('/conversations/<string:conversation_id>/messages/<string:message_id>', methods=['DELETE'], strict_slashes=False)
 def delete_message(conversation_id, message_id):

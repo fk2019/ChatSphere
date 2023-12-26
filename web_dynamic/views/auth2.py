@@ -68,7 +68,6 @@ def basic_login():
         session['name'] = user.user_name
         token = uuid.uuid4()
         key = 'auth_{}'.format(token)
-        print(key)
         redis_client.set(key, user.id)
         redis_client.expire(key, 24 * 60 * 60)
         session['token'] = token
@@ -105,6 +104,11 @@ def callback():
     user = storage._DBStorage__session.query(User).filter_by(
         email=email).first()
     if user:
+        token = uuid.uuid4()
+        key = 'auth_{}'.format(token)
+        redis_client.set(key, user.id)
+        redis_client.expire(key, 24 * 60 * 60)
+        session['token'] = token
         return redirect(url_for('auth2.protected_area'))
     kwargs = {'user_name': name, 'email': email, 'oauth_provider': 'google', 'oauth_user_id': oauth_user_id}
     requests.post('https://techinspire.tech/api/v1/users', json=kwargs)
@@ -181,3 +185,4 @@ def logout():
 def protected_area():
     """Render home page"""
     return render_template('home.html')
+
