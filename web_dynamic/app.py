@@ -25,15 +25,6 @@ def set_headers(response):
     response.headers['Referrer-Policy'] = 'no-referrer'
     return response
 
-@socketio.on('connect')
-def handle_connect():
-    print('Client connected')
-
-@socketio.on('disconnect')
-def handle_disconnect():
-    print('Client disconnected')
-
-
 @socketio.on('sendMessage')
 def send_message(message):
     emit('receivedMessage', message, broadcast=True)
@@ -45,4 +36,4 @@ def send_message(message):
 
 
 if __name__ == '__main__':
-    socketio.run(app, port=5005, debug=True)
+    socketio.run(app, port=5005)

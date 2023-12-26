@@ -100,9 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
   socket.on('receivedFile', (message) => {
     displayFile([message]);
   });
-  socket.on('disconnect', () => {
-    console.log('disconnect');
-  });
+
   const getImage = (url) => {
     $.get(url).done((data) => {
       const b = new Blob([data]);
