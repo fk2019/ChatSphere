@@ -49,6 +49,7 @@ def post_message_image(conversation_id, sender_id):
     if 'file' not in request.files:
         return (make_response(jsonify({'error': 'No file selected'})), 400)
     file = request.files.get('file')
+    timestamp = request.form.get('timestamp')
     filename = file.filename
     filename = secure_filename(filename)
     content_type = file.content_type
@@ -56,13 +57,12 @@ def post_message_image(conversation_id, sender_id):
     path = uuid.uuid4()
     local_path = os.path.join(folder, str(path))
     file.save(local_path)
-    data = {'filepath': path, 'sender_id': sender_id, 'isFile': True}
+    data = {'filepath': path, 'sender_id': sender_id, 'isFile': True, 'timestamp': timestamp}
     conv = storage.get(Conversation, conversation_id)
     if not conv:
         abort(404)
     msg = Message(**data)
     conv.messages.append(msg)
-    print('post file id', msg.id)
     conv.save()
     if conv:
         return (jsonify({"id": msg.id}), 200)
@@ -76,8 +76,6 @@ def message_file(conversation_id, file_id):
     if obj is None:
         abort(404)
     file_obj = storage.get(Message, file_id)
-    print('fileid', file_id)
-#    print(file_obj.to_dict())
     if file_obj is None:
         abort(404)
     filepath = file_obj.filepath

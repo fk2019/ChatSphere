@@ -98,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
     displayMessage(messageA);
   });
   socket.on('receivedFile', (message) => {
-    console.log('filea', message);
     displayFile([message]);
   });
   socket.on('disconnect', () => {
@@ -183,21 +182,15 @@ document.addEventListener('DOMContentLoaded', function () {
     displayHeader(user, userHeader, userPic, userP);
   }
   // display File to chat area
+  const fileIds = [];
   const displayFile = (messageArray, currentUser) => {
     const messageDiv = document.createElement('div');
     const fileId = messageArray[0].id;
-    console.log('msg', messageArray[0]);
-    const blob = new Blob([fl]);
-    //const getUrl = URL.createObjectURL(blob);
 
     const getUrl = messageURL + `${convId}/file/${fileId}`;
-    const pdata = {
-      path: fl,
-    };
-    //ad set class
     setMessageClass(messageArray[0].sender_id, messageDiv);
     const thumbnailElement = document.createElement('img');
-    //edit url
+
     thumbnailElement.src = getUrl
     thumbnailElement.classList.add('uploaded-image');
     const ftime = getTime(messageArray[0].timestamp);
@@ -210,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
     messagesContainer.appendChild(messageDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
-  // appendMessage to main div
+  // appendMessage to main message container
   const appendMessage = (messageDiv, content, time) => {
     const pMsg = document.createElement('p');
     const pTime = document.createElement('p');
@@ -248,12 +241,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const ftime = getTime(messageArray[0].timestamp);
     const sender = messageArray[0].sender_id;
     fl = messageArray[0].isFile
-    console.log('displaymessage', messageArray[0]);
     setMessageClass(sender, messageDiv);
     if (!file && !fl) {
       appendMessage(messageDiv, content, ftime);
     } else {
-      displayFile(messageArray, currentUser, messageDiv);
+      displayFile(messageArray, currentUser);
     }
   }
 
@@ -272,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function () {
       };
       socket.emit('sendMessage', messageData);
 
-      messageInput.value = '';
+      messageInput.value = ''; //clear input field
 
       let sdata = {
         content: message,
@@ -285,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function () {
         data: sdata,
         headers: { 'Content-Type': 'application/json' },
       }).done((data) => {
-        console.log('data', data);
+        console.log('sent-message', data);
       })
         .fail((er) => console.error('Error:', er));
     }
@@ -356,9 +348,8 @@ document.addEventListener('DOMContentLoaded', function () {
       const fileUrl = messageURL + `${convId}/${currentUser.id}/messages/file`;
       const fData = new FormData();
       fData.append('file', file);
-        const fileData = {
-        file: fData,
-      };
+      const time = new Date();
+      fData.append('timestamp', time);
       $.post({
         url: fileUrl,
         data: fData,
@@ -368,11 +359,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const messageArray = {
           id: data.id,
           sender_id: currentUser.id,
-          timestamp: new Date(),
+          timestamp: time,
         };
       socket.emit('sendFile', messageArray);
-
-        console.log(data);
         fileInput.value = ''
         toggleSendButton()
       })
