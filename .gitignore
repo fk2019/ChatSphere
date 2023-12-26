@@ -4,3 +4,6 @@ __pycache__/
 client_secret.json
 #*
 tests/
+uploads/
+default_images/
+sent_files/
