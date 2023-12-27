@@ -14,12 +14,14 @@ body {
     background-size: cover;
     background-position: center;
 }
+
 .side-bar {
     display: flex;
     flex-direction: column;
     width: 20%;
     background-color: rgba(35, 43, 43, 0.8);
 }
+
 .logo-header {
     margin-bottom: 5px;
     margin-top: 10px;
@@ -83,12 +85,11 @@ body {
     display: flex;
     max-height: 15%;
     margin-bottom: 20px;
-    margin-top: 5px;
     background-color: rgba(128, 0, 128, 1);
     align-items: center;
-    margin-right: 0.5em;
     justify-content: space-around;
     width: 100%vw;
+
 }
 
 .user-pic {
@@ -110,9 +111,10 @@ body {
     align-items: center;
     display: flex;
     color: #FFA500;
-    max-width: 12rem;
+    max-width: 13rem;
     .user {
-
+	margin-right: 1em;
+	margin-left: 0.5em;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -356,6 +358,9 @@ p {
     margin-top: auto;
     margin-bottom: auto;
 }
+.gg-arrow-left.back {
+    display: none;
+}
 /* edit scroll bar */
 /* Works on Firefox */
 * {
@@ -377,4 +382,33 @@ p {
   background-color: #800080;
   border-radius: 20px;
   border: 3px solid orange;
+}
+
+@media only screen and (max-width: 768px) {
+    .chat-header {
+	margin-right: 0;
+	margin-top: 0;
+    }
+    .side-bar {
+	width: 100%;
+	opacity: 100%;
+    }
+    .active-sb {
+	display: none;
+    }
+    .chat-area {
+	display: none;
+    }
+    .gg-arrow-left.back {
+	display: flex;
+	margin-left: 1rem;
+	color: orange;
+    }
+    .current-user {
+	margin-right: 1rem;
+	gap: 1rem;
+    }
+    .header-button, .user {
+	display: none;
+    }
 }

@@ -12,11 +12,12 @@
     <link href='https://unpkg.com/css.gg@2.0.0/icons/css/log-out.css' rel='stylesheet'>
     <link href='https://unpkg.com/css.gg@2.0.0/icons/css/menu.css' rel='stylesheet'>
     <link href='https://unpkg.com/css.gg@2.0.0/icons/css/arrow-right.css' rel='stylesheet'>
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/arrow-left.css' rel='stylesheet'>
     <title>ChatSphere | home</title>
   </head>
-  <body>
+  <body id="body">
     <div class="chat-container">
-      <div class="side-bar">
+      <div data-role="page" class="side-bar" id="side-bar">
 	<div class="logo-header">
 	  <img src="../static/images/avatars/chat_logo.jpg">
 	  <p>ChatSphere</p>
@@ -25,8 +26,9 @@
             <!-- User names will be dynamically added here -->
         </div>
       </div>
-      <div class="chat-area">
+      <div class="chat-area" id="chats">
 	<div class="chat-header">
+	  <i class="gg-arrow-left back"></i>
 	  <div class="user-header"></div>
 	  <div class="right-nav">
 	    <div class="current-user">
@@ -78,6 +80,8 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
     <script src="../static/js/t.js"></script>
   </body>
 </html>

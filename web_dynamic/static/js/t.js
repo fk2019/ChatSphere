@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadUsers(v, currentUser);
   });
 
+
   imageInput.on('change', function () {
     const file = imageInput[0].files[0];
     if (file) {
@@ -88,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let sender;
   socket.connect('https://techinspire.tech');
 
+  // socket connection for received messages
   socket.on('receivedMessage', (message) => {
     console.log('receiving message', message);
     const content = message.message;
@@ -97,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log(currentUser.id, message.sender_id);
     displayMessage(messageA);
   });
+  // socket connection for received files
   socket.on('receivedFile', (message) => {
     displayFile([message]);
   });
@@ -109,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return fr;
     });
   };
+  // load user's image
   function loadUserImage(user, el, userPicDiv, userPar) {
     const url = usersURL + `${user.id}/image`;
     let imageSrc;
@@ -125,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
     el.appendChild(userPicDiv);
     el.appendChild(userPar);
   }
-
+  // display header
   function displayHeader(user, el, userPicDiv, userPar) {
     if (userPicDiv && userPar) {
       const userDiv = document.createElement('div');
@@ -137,16 +141,37 @@ document.addEventListener('DOMContentLoaded', function () {
       loadUserImage(user, el, userPic, userP);
     }
   }
-  let current = ''
-  // Display users
+  const chatArea = document.querySelector('.chat-area');
+    // display user list and remove hash on back click
+  const back = $('.gg-arrow-left');
+  back.on('click', () => {
+    console.log('go back');
+    $('.side-bar').removeClass('active-sb');
+    $('.chat-area').css('display', 'none');
+  });
+
+  // activate back button on mobile popstate
+  if (window.getComputedStyle(chatArea).display === 'none') {
+      window.addEventListener('popstate' , (event) => {
+        //event.state.page must be declared for mobile popstate to function
+        event.state.page;
+        back.click();
+      });
+  }
+
+  // load all users
   const loadUsers = (users, currentUser) => {
     users.forEach(user => {
-      const userDiv = document.createElement('div');
-      userDiv.addEventListener('click', () => {
+      //      getUserA();
+      const userA = document.createElement('div');
+      userA.addEventListener('click', () => {
+        console.log('sss')
+        sideBar.classList.add('active-sb');
+        $('.chat-area').css('display', 'flex');
         loadMessages(user, currentUser);
       });
-      displayHeader(user, userDiv);
-      usersList.appendChild(userDiv);
+      displayHeader(user, userA);
+      usersList.appendChild(userA);
     });
   };
   // Function to load and display messages for a user
@@ -180,7 +205,6 @@ document.addEventListener('DOMContentLoaded', function () {
     displayHeader(user, userHeader, userPic, userP);
   }
   // display File to chat area
-  const fileIds = [];
   const displayFile = (messageArray, currentUser) => {
     const messageDiv = document.createElement('div');
     const fileId = messageArray[0].id;

@@ -70,7 +70,7 @@ def save_user(args):
     for arg in args:
         if arg not in request.get_json():
             return (make_response(jsonify({'error': 'Missing {}'.format(arg)}), 400))
-    photo = 'squirrel'
+    photo = 'squirrel.jpg'
     data = request.get_json()
     data['profile_photo'] = photo
     obj = User(**data)
