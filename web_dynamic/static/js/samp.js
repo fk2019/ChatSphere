@@ -102,13 +102,12 @@ document.addEventListener('DOMContentLoaded', function () {
   socket.on('receivedFile', (message) => {
     displayFile([message]);
   });
-  let profile;
+
   const getImage = (url) => {
     $.get(url).done((data) => {
       const b = new Blob([data]);
       const fr = new FileReader();
       fr.readAsDataURL(b);
-      profile = fr;
       return fr;
     });
   };
@@ -116,12 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function loadUserImage(user, el, userPicDiv, userPar) {
     const url = usersURL + `${user.id}/image`;
     let imageSrc;
-    //set src from first load
-    if (profile) {
-      imageSrc = profile;
-    } else {
-      imageSrc = getImage(url);
-    }
+    imageSrc = getImage(url);
     const userImage = document.createElement('img');
     userPicDiv.innerHTML = '';
     userPar.innerHTML = '';
@@ -165,7 +159,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   }
   // load all users
-  let userIds = [];
   const loadUsers = (users, currentUser) => {
     users.forEach(user => {
       const userA = document.createElement('div');
@@ -173,11 +166,8 @@ document.addEventListener('DOMContentLoaded', function () {
         sideBar.classList.add('active-sb');
         $('.chat-area').css('display', 'flex');
         participant = user;
-        if (!userIds.includes(user.id)) userIds.push(user.id);
         loadMessages(user, currentUser);
-
       });
-
       displayHeader(user, userA);
       usersList.appendChild(userA);
     });
@@ -185,9 +175,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // Function to load and display messages for a user
   let page = 1;
   let status;
-  let msg = [];
-  let userMsgs = {};
-  let copyMsgs = {};
   function loadMessages(user, currentUser) {
     const userConvIds = user.conversation_ids;
     const senderConvIds = currentUser.conversation_ids;
@@ -197,47 +184,32 @@ document.addEventListener('DOMContentLoaded', function () {
     rec = user;
     sender = currentUser;
     let messages = [];
-    let d = user.id
-    if (copyMsgs[user.id]) {
-      copyMsgs[user.id].forEach((message) => {
-        displayMessage(message, currentUser);
-      });
-      displayHeader(user, userHeader, userPic, userP);
-      return;
-    }
     const messageUrl = messageURL + `${convId}/messages?page=${page}`;
+    //socket message
     if (convId != undefined) {
       $.get(messageUrl).done((data) => {
+        console.log(data)
         if (data.status) {
           status = 'end';
           return;
         }
-        $.each(data, (i, message) => {
+        $.each(data, (i, msg) => {
           const mess = [];
-          mess.push(message);
+          mess.push(msg);
           messages.push(mess);
-          for (let i = 0; i < mess.length; i++) {
-            let isUnique = !msg.some(item => item[0].id === mess[i].id);
-            if (isUnique) {
-              msg.push([mess[i]]);
-            }
-          }
-          if (userIds.includes(user.id)) {
-            userMsgs[user.id] = messages
-            g = userMsgs;
-          }
-
         });
+
         messages.forEach((message) => {
           displayMessage(message, currentUser);
         });
       });
-    }
+    } else {
+    console.log('noo')
     current = user;
     userHeader.innerHTML = '';
     messagesContainer.innerHTML = '';
     displayHeader(user, userHeader, userPic, userP);
-//    }
+    }
   }
   // display File to chat area
   const displayFile = (messageArray, currentUser) => {
@@ -258,7 +230,17 @@ document.addEventListener('DOMContentLoaded', function () {
     messageDiv.appendChild(thumbnailElement);
     messageDiv.appendChild(pTime);
     messagesContainer.appendChild(messageDiv);
+//    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  //  const h = messagesContainer.scrollHeight;
+   // messagesContainer.scrollTop = h;
+   // const stop = messagesContainer.scrollTop;
+   // console.log('f', stop, h)
+
   }
+  let top = false;
+  let counter = 0;
+  let counter2 = 0;
+
   // appendMessage to main message container
   const appendMessage = (messageDiv, content, time) => {
     const pMsg = document.createElement('p');
@@ -271,9 +253,41 @@ document.addEventListener('DOMContentLoaded', function () {
     messageDiv.appendChild(pMsg);
     messageDiv.appendChild(pTime);
     messagesContainer.appendChild(messageDiv);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }
 
+    console.log('top', top)
+    //messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    console.log('start',messagesContainer.scrollTop)
+    if (!top) {
+      console.log('not top')
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    } else {
+      setTimeout(() => {
+        top = true;
+        console.log(messagesContainer.scrollTop);
+      }, 1000);
+
+    console.log('test',messagesContainer.scrollTop, messagesContainer.scrollHeight)
+    console.log('test.......');
+    messagesContainer.addEventListener("scroll", (event) => {
+      counter++;
+      if (status) return;
+      console.log('before',messagesContainer.scrollTop, messagesContainer.scrollHeight)
+      //loadMessages(participant, currentUser);
+      if (messagesContainer.scrollTop == 0) {
+        counter2++;
+        top = true;
+        page++;
+        console.log('page', page)
+        console.log('if',messagesContainer.scrollTop, messagesContainer.scrollHeight)
+        loadMessages(participant, currentUser);
+      } else{
+        //messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        console.log('not zero',messagesContainer.scrollTop)
+      }
+    });
+      console.log(counter, counter2)
+    }
+  }
 
   const setMessageClass = (sender, messageDiv) => {
     if (sender === currentUser.id) {

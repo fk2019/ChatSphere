@@ -14,13 +14,20 @@ from werkzeug.utils import secure_filename
 def messages(conversation_id):
     """Retrieve list of all sent Message objects"""
     result = []
+    page = int(request.args.get('page', 1))
+    max_page_size = 2
+    start_index = (page - 1) * max_page_size
+    end_index = start_index + max_page_size
     obj = storage.get(Conversation, conversation_id)
     if obj is None:
         abort(404)
     for message in obj.messages:
         result.append(message.to_dict())
-    result = sorted(result, key=lambda k: k['updated_at'])
-    return (jsonify(result))
+    result_s = sorted(result, key=lambda k: k['updated_at'])
+    if page >= len(result):
+        return jsonify({'status': 'end'})
+    result = result[start_index:end_index]
+    return (jsonify(result_s))
 
 
 @app_views.route('/conversations/<string:conversation_id>/messages', methods=['POST'], strict_slashes=False)
