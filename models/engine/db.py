@@ -55,7 +55,6 @@ class DBStorage:
                 for m in conv.messages:
                     del m
                 del conv
-                conv.save()
             print(obj.conversations)
             self.__session.delete(obj)
 
