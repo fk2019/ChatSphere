@@ -8,6 +8,7 @@ from models.redis import redis_client
 import os
 from io import BytesIO
 from werkzeug.utils import secure_filename
+import uuid
 
 
 @app_views.route('/users', strict_slashes=False)
@@ -101,7 +102,7 @@ def update_user_pic(user_id):
     """Update a User object's image"""
     upload_folder = current_app.config.get('UPLOAD_FOLDER')
     obj = storage.get(User, user_id)
-    ALLOWED_EXTS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+    ALLOWED_EXTS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'jfif'}
     if not obj:
         abort(404)
     if 'image' not in request.files:
@@ -112,17 +113,18 @@ def update_user_pic(user_id):
         filename = file.filename
         content_type = file.content_type
         secure_name = secure_filename(filename)
-        path = os.path.join(upload_folder, secure_name)
-        file.save(path)
-        data = {'profile_photo': secure_name}
+        path = str(uuid.uuid4())
+        local_path = os.path.join(upload_folder, path)
+        file.save(local_path)
+        data = {'profile_photo': path}
         for key, val in data.items():
             if key not in ['id', 'created_at', 'updated_at']:
                 setattr(obj, key, val)
         obj.save()
         redis_client.set(user_id, str(obj.to_dict()))
-        return (jsonify({'status': 'Image updated successfully'}), 200)
+        return (send_from_directory(upload_folder, path), 200)
     else:
-        return jsonify({'status': 'file tyep not allowed'})
+        return jsonify({'status': 'file type not allowed'}, 400)
 
 
 @app_views.route('/users/<string:user_id>', methods=['DELETE'], strict_slashes=False)

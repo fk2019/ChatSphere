@@ -35,5 +35,10 @@ def send_message(message):
     emit('receivedFile', message, broadcast=True)
 
 
+@socketio.on('update')
+def send_message(message):
+    emit('receivedUpdate', message, broadcast=True)
+
+
 if __name__ == '__main__':
     socketio.run(app, port=5005)

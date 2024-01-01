@@ -57,7 +57,7 @@
 	  <label for"username">Username</label>
 	  <div class="form-input">
 	    <input type="text" name="username" placeholder="{{ session['name']}}" autofocus>
-	    <button title="click to save"><i class="gg-chevron-right"></i></button>
+	    <button title="click to save" type="submit" class="update-info"><i class="gg-chevron-right"></i></button>
 	  </div>
 	  <p>Privacy</p>
 	  <p>Notifications</p>
@@ -73,7 +73,7 @@
 	  <label for="file-input" class="file-label"><i class="gg-image"></i></label>
 	  <input type="file" id="file-input" accept="image/*" onChange='toggleSendButton()'>
 
-	  <button id="send-button"><i class="gg-chevron-right"></i></button>
+	  <button type="button" id="send-button"><i class="gg-chevron-right"></i></button>
 	</div>
 
       </div>

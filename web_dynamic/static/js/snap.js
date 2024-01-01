@@ -1,71 +1,29 @@
 document.addEventListener('DOMContentLoaded', function () {
   const uploadButton = $('#uploadButton');
   const imageInput = $('#imageInput');
-  const usersURL = 'https://techinspire.tech/api/v1/users/';
-  const messageURL = 'https://techinspire.tech/api/v1/conversations/';
-  const currentUserName = document.querySelector('.user');
   uploadButton.on('click', () => {
     imageInput.click();
   });
   const form = document.querySelector('.settings');
   const formButton = $('.arrow');
-  const updateInfo = $('.update-info');
-  let userA;
-  const updateUser = (sdata) => {
-    const updateUrl = usersURL + `${currentUser.id}`;
-    $.ajax({
-      url: updateUrl,
-      type: 'PUT',
-      data: sdata,
-      contentType: 'application/json',
-      success: ((data) => {
-        currentUserName.textContent = data.user_name;
-      }),
-      error: ((er) => console.log('Error', er)),
+  formButton.on('click', () => {
+      form.style.display = 'none';
     });
-  }
-  updateInfo.on('click', (event) => {
-    event.preventDefault();
-    const updateUrl = usersURL + `${currentUser.id}`;
-    console.log('hhh',updateUrl)
-    const formData = new FormData(form);
-    const jsonData = {};
-    formData.forEach((val) => {
-      jsonData['user_name'] = val;
-    });
-    updateUser(JSON.stringify(jsonData));
-    form.style.display = 'none';
-  });
   const more = $('.more-settings');
   more.on('click', () => {
     form.style.display = 'flex';
   });
+  const usersURL = 'https://techinspire.tech/api/v1/users/';
+  const messageURL = 'https://techinspire.tech/api/v1/conversations/';
   let currentUser;
   let participant;
-  //display logged user image
-  const displayUserImage = (imageUrl, update) => {
-    const userImage = document.querySelector('.user-image');
-    userImage.innerHTML = '';
-    userImage.classList.add('user-pic');
-    const img = document.createElement('img');
-    if (update) {
-      const url = usersURL + currentUser.id + '/image';
-      getImage(url)
-      img.src = url;
-    } else {
-      img.src = imageUrl;
-    }
-    userImage.appendChild(img);
-  }
-  //load logged-in user
   const loadCurrentUser = () => {
     const userImage = document.querySelector('.user-image');
     userImage.classList.add('user-pic');
-//    const img = document.createElement('img');
+    const img = document.createElement('img');
     const url = usersURL + currentUser.id + '/image';
-    //  img.src = url;
-    displayUserImage(url);
-    //userImage.appendChild(img);
+    img.src = url;
+    userImage.appendChild(img);
   };
   $.get(usersURL).done((data) => {
     data.sort((a, b) => {
@@ -90,10 +48,8 @@ document.addEventListener('DOMContentLoaded', function () {
     loadUsers(v, currentUser);
   });
 
-  // update image
-  imageInput.on('change', function (event) {
-    event.preventDefault();
-    $('.menu-list').css('display', 'none');
+
+  imageInput.on('change', function () {
     const file = imageInput[0].files[0];
     if (file) {
       let formData = new FormData();
@@ -109,19 +65,10 @@ document.addEventListener('DOMContentLoaded', function () {
         data: formData,
         contentType: false,
         processData: false,
-        success: ((data) => {
-          displayUserImage(data, 'yes');
-          console.log('el',userA);
-          const updateData = {
-            user: currentUser,
-            el: userA,
-          };
-          socket.emit('update', updateData);
+        success: (() => {
+          location.reload();
         }),
-        error: ((er) => {
-          console.log('Error', er);
-          alert(er);
-        }),
+        error: ((er) => console.log('Error', er)),
       });
     }
   });
@@ -140,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
   let convId;
   let rec;
   let sender;
-
   socket.connect('https://techinspire.tech');
 
   // socket connection for received messages
@@ -157,27 +103,6 @@ document.addEventListener('DOMContentLoaded', function () {
     displayFile([message]);
   });
   let profile;
-  // socket connection for updated user
-  socket.on('receivedUpdate', (d)=> {
-    console.log('uuu',d);
-    let u = d.user;
-    const url = usersURL + `${u.id}/image`;
-    const userImage = document.createElement('img');
-    const userPic = document.createElement('div');
-    const userP = document.createElement('p');
-    userPic.innerHTML = '';
-    userP.innerHTML = '';
-    userPic.classList.add('user-pic');
-    userP.classList.add('user-name');
-    userPic.appendChild(userImage);
-    userImage.src = url;
-    const userName = document.createTextNode(user.user_name);
-    userP.appendChild(userName);
-    userA.appendChild(userPic);
-    userA.appendChild(userP);
-  });
-
-
   const getImage = (url) => {
     $.get(url).done((data) => {
       const b = new Blob([data]);
@@ -229,30 +154,21 @@ document.addEventListener('DOMContentLoaded', function () {
   back.on('click', () => {
     $('.side-bar').removeClass('active-sb');
     $('.chat-area').css('display', 'none');
-    window.history.replaceState({ page: '#' }, 'Home', 'home');
   });
+
   // activate back button on mobile popstate
-  const state = window.getComputedStyle(chatArea).display
-  if (state === 'none') {
-    window.history.replaceState({ page: '#' }, 'Home', 'home');
-    window.addEventListener('popstate' , (event) => {
-      //event.state.page must be declared for mobile popstate to function
-      event.state.page;
-      back.click();
-    });
+  if (window.getComputedStyle(chatArea).display === 'none') {
+      window.addEventListener('popstate' , (event) => {
+        //event.state.page must be declared for mobile popstate to function
+        event.state.page;
+        back.click();
+      });
   }
   // load all users
   let userIds = [];
-
   const loadUsers = (users, currentUser) => {
-
     users.forEach(user => {
-      if (state === 'none') {
-        userA = document.createElement('a')
-        userA.href='#';
-      } else {
-        userA = document.createElement('div');
-      }
+      const userA = document.createElement('div');
       userA.addEventListener('click', () => {
         sideBar.classList.add('active-sb');
         $('.chat-area').css('display', 'flex');
@@ -266,7 +182,6 @@ document.addEventListener('DOMContentLoaded', function () {
       usersList.appendChild(userA);
     });
   };
-
   // Function to load and display messages for a user
   let page = 1;
   let status;
@@ -478,6 +393,7 @@ document.addEventListener('DOMContentLoaded', function () {
           contentType: false,
           processData: false,
         }).done((data) => {
+          console.log(data);
           fileInput.value = ''
           toggleSendButton();
         })

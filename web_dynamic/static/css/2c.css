@@ -51,7 +51,7 @@ body {
     flex-direction: column;
 }
 
-.users-list > div {
+.users-list > div, .users-list > a {
     padding: 8px;
     cursor: pointer;
     border-bottom: 1px solid #54626F;
@@ -419,8 +419,7 @@ p {
 	max-width: 15rem;
     }
     .menu-list {
-	margin-right: 1.5rem;
+	margin-right: 2rem;
 	margin-top:1.5rem;
     }
-
 }

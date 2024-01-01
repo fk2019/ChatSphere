@@ -26,7 +26,6 @@ class Conversation(BaseModel, Base):
         """add unique participants"""
         if user not in self.participants:
             self.participants.append(user)
-            print([p.user_name for p in self.participants])
 
     def mark_as_read(self, user_id, last_message_id):
         """Mark messages as read"""

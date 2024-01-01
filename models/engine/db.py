@@ -51,6 +51,12 @@ class DBStorage:
 
     def delete(self, obj=None):
         if obj:
+            for conv in obj.conversations:
+                for m in conv.messages:
+                    del m
+                del conv
+                conv.save()
+            print(obj.conversations)
             self.__session.delete(obj)
 
     def get(self, cls, id):

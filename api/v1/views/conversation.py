@@ -45,6 +45,7 @@ def conversation(conversation_id):
 def create_conversation():
     """Add a Conversation object"""
     data = request.get_json()
+
     if not data:
         return (make_response(jsonify({'error': 'Not a JSON'})))
     user1_id = data.get('participants')[0]
@@ -55,7 +56,18 @@ def create_conversation():
     conv.add_participant(user1)
     conv.add_participant(user2)
     conv.save()
-    c = storage.get(Conversation, conv.id)
+    #    c = storage.get(Conversation, conv.id)
     del conv.participants
-    conv.participant = [user1_id, user2_id]
+    #   conv.participant = [user1_id, user2_id]
     return conv.to_dict()
+
+
+@app_views.route('/conversations/<string:conversation_id>', methods=['DELETE'], strict_slashes=False)
+def delete_conversation(conversation_id):
+    """Delete a Conversation object"""
+    obj = storage.get(Conversation, conversation_id)
+    if not obj:
+        abort(404)
+    obj.delete()
+    storage.save()
+    return ({}, 200)
