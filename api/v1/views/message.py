@@ -24,8 +24,8 @@ def messages(conversation_id):
     for message in obj.messages:
         result.append(message.to_dict())
     result_s = sorted(result, key=lambda k: k['updated_at'])
-    if page >= len(result):
-        return jsonify({'status': 'end'})
+    #if page >= len(result):
+    #return jsonify({'status': 'end'})
     result = result[start_index:end_index]
     return (jsonify(result_s))
 
