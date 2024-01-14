@@ -8,7 +8,7 @@ Experience seamless connections with the most secure and reliable messaging plat
 
 This is my personal messaging project that allows people to communicate with each other with ease. They can share simple messages and even images during a conversation. It is a simple but complex project that propelled me to learn about Software Engineering.
 * Getting Started
-1. Visit the ChatSphere page
+1. Visit the [[https://techinspire.tech/][ChatSphere page]]
 2. Create account or login using Oauth or with your custom credentials
 
 * Screenshots
@@ -53,11 +53,17 @@ A conversation can only be between two or more participants. As such, it would b
 
 
 * Related Projects
++ [[https://github.com/fk2019/Star_Wars_Movie_Guide][Star Wars Movie Guide]]
++ [[https://github.com/fk2019/AirBnB_clone_v4][AirBnB Clone]]
 * Future
++ Password reset feature
++ Furnish all pages in the frontend
++ DB replication
+
 * Authors
-Francis Kamau is a skilled Software Engineer trained by ALX.
+[[https://github.com/fk2019][Francis Kamau]] is a skilled Software Engineer committed to quality and impactful products.
 Feel free to reach out to Francis for any opportunities or collaborations.
 * Acknowledgements
-+ ALX: Thanks Julien and ALX mentors for the opportunity to learn, upskill and do hard things at ALX. Much thanks to all peers for the support.
++ [[https://www.alxafrica.com/][ALX]]: Thanks Julien and ALX mentors for the opportunity to learn, upskill and do hard things at ALX. Much thanks to all peers for the support.
 + #TeamEmacs: Who needs the hell of exiting Vim?
 * License
