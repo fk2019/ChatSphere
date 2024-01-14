@@ -1,25 +1,25 @@
 
 # Table of Contents
 
-1.  [Introduction](#org50fbf1d)
-2.  [Getting Started](#org6b717f6)
-3.  [Screenshots](#org396b13a)
-    1.  [conversation with text](#org32f51f3)
-    2.  [conversation with images](#orge7f9dff)
-4.  [Technologies](#org9729beb)
-5.  [API](#org1d4b586)
-    1.  [messages](#org0bb5db3)
-    2.  [conversations](#org8529559)
-    3.  [users](#orgc043000)
-6.  [Related Projects](#org38d568e)
-7.  [Future](#org1384172)
-8.  [Authors](#org500fa3d)
-9.  [Acknowledgements](#org809ccd1)
-10. [License](#orge4034d3)
+1.  [Introduction](#orgba15ad8)
+2.  [Getting Started](#orga519998)
+3.  [Screenshots](#org943aa20)
+    1.  [conversation with text](#orgafbdecf)
+    2.  [conversation with images](#org9ceefc7)
+4.  [Technologies](#org4e17556)
+5.  [API](#org30f7b3b)
+    1.  [messages](#org337198b)
+    2.  [conversations](#org25272d3)
+    3.  [users](#org4447e59)
+6.  [Related Projects](#org9241aff)
+7.  [Future](#org7faa5af)
+8.  [Authors](#orgca26a24)
+9.  [Acknowledgements](#org1305445)
+10. [License](#org1b19faf)
 
 
 
-<a id="org50fbf1d"></a>
+<a id="orgba15ad8"></a>
 
 # Introduction
 
@@ -29,34 +29,34 @@ Experience seamless connections with the most secure and reliable messaging plat
 This is my personal messaging project that allows people to communicate with each other with ease. They can share simple messages and even images during a conversation. It is a simple but complex project that propelled me to learn about Software Engineering.
 
 
-<a id="org6b717f6"></a>
+<a id="orga519998"></a>
 
 # Getting Started
 
-1.  Visit the ChatSphere page
+1.  Visit the [ChatSphere page](https://techinspire.tech/)
 2.  Create account or login using Oauth or with your custom credentials
 
 
-<a id="org396b13a"></a>
+<a id="org943aa20"></a>
 
 # Screenshots
 
 ![img](./web_dynamic/static/images/avatars/conv.png "conversations")
 
 
-<a id="org32f51f3"></a>
+<a id="orgafbdecf"></a>
 
 ## conversation with text
 
 ![img](./web_dynamic/static/images/avatars/ju.png)
 
 
-<a id="orge7f9dff"></a>
+<a id="org9ceefc7"></a>
 
 ## conversation with images
 
 
-<a id="org9729beb"></a>
+<a id="org4e17556"></a>
 
 # Technologies
 
@@ -66,14 +66,14 @@ This is my personal messaging project that allows people to communicate with eac
 -   Authentication and authorization: Oauth2(google<sub>auth</sub><sub>oauthlib</sub>, google.oauth2 libraries, etc.) and Flask sessions among others.
 
 
-<a id="org1d4b586"></a>
+<a id="org30f7b3b"></a>
 
 # API
 
 The frontend communicates with the backend storage via a Flask API. Various endpoints have been configured to suite the needs of the project. 
 
 
-<a id="org0bb5db3"></a>
+<a id="org337198b"></a>
 
 ## messages
 
@@ -134,7 +134,7 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="org8529559"></a>
+<a id="org25272d3"></a>
 
 ## conversations
 
@@ -200,7 +200,7 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="orgc043000"></a>
+<a id="org4447e59"></a>
 
 ## users
 
@@ -280,33 +280,35 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="org38d568e"></a>
+<a id="org9241aff"></a>
 
 # Related Projects
 
+[Star Wars Movie Guide](https://github.com/fk2019/Star_Wars_Movie_Guide)
 
-<a id="org1384172"></a>
+
+<a id="org7faa5af"></a>
 
 # Future
 
 
-<a id="org500fa3d"></a>
+<a id="orgca26a24"></a>
 
 # Authors
 
-Francis Kamau is a skilled Software Engineer trained by ALX.
+[Francis Kamau](https://github.com/fk2019) is a skilled Software Engineer committed to quality and impactful products.
 Feel free to reach out to Francis for any opportunities or collaborations.
 
 
-<a id="org809ccd1"></a>
+<a id="org1305445"></a>
 
 # Acknowledgements
 
--   ALX: Thanks Julien and ALX mentors for the opportunity to learn, upskill and do hard things at ALX. Much thanks to all peers for the support.
+-   [ALX](https://www.alxafrica.com/): Thanks Julien and ALX mentors for the opportunity to learn, upskill and do hard things at ALX. Much thanks to all peers for the support.
 -   \#TeamEmacs: Who needs the hell of exiting Vim?
 
 
-<a id="orge4034d3"></a>
+<a id="org1b19faf"></a>
 
 # License
 
