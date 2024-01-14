@@ -149,3 +149,53 @@ footer {
 .cta > .btn {
     margin-top: 25px;
 }
+
+@media only screen and (max-width: 768px) {
+    .feature, .head-cls {
+	flex-wrap: wrap;
+    }
+    .head-cls > .image {
+	width: 64%;
+    }
+    .welcome {
+	width: 64%;
+    }
+    .welcome > a {
+	margin-bottom: 1rem;
+    }
+    h1 {
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 36px;
+    }
+    h2 {
+	font-size: 32px;
+    }
+    .feature-txt, .image{
+	align-self: center;
+	width: 100%;
+    }
+    .image {
+	width: 100%;
+	height: auto;
+    }
+    footer {
+	align-self: center;
+    }
+    .nav {
+	justify-content: space-around;
+	flex-wrap: wrap;
+	height: 2em;
+
+    }
+    .nav > .top {
+	display: none;
+    }
+    .about {
+	margin-right: auto;
+	margin-left: 0.8em;
+    }
+    .login {
+	margin-right: 0.8em;
+    }
+}

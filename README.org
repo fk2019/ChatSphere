@@ -12,6 +12,11 @@ This is my personal messaging project that allows people to communicate with eac
 2. Create account or login using Oauth or with your custom credentials
 
 * Screenshots
+#+caption:conversations
+[[./web_dynamic/static/images/avatars/conv.png]]
+** conversation with text
+[[./web_dynamic/static/images/avatars/ju.png]]
+** conversation with images
 * Technologies
 + Frontend: HTML, CSS, JQuery, JavaScript
 + Backend: Flask - (create dynamic web pages by serving HTML templates using Jinja2, Handle Restful API requests, connect to DB, perform CRUD operations, and implement authentication and authorization)

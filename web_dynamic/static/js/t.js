@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', function () {
+//document.addEventListener('DOMContentLoaded', function ()
+$(document).ready(function () {
   const uploadButton = $('#uploadButton');
   const imageInput = $('#imageInput');
   const usersURL = 'https://techinspire.tech/api/v1/users/';
@@ -27,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
   updateInfo.on('click', (event) => {
     event.preventDefault();
     const updateUrl = usersURL + `${currentUser.id}`;
-    console.log('hhh',updateUrl)
     const formData = new FormData(form);
     const jsonData = {};
     formData.forEach((val) => {
