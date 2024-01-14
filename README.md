@@ -1,25 +1,25 @@
 
 # Table of Contents
 
-1.  [Introduction](#org6d7274d)
-2.  [Getting Started](#org889642d)
-3.  [Screenshots](#org2d2ce91)
-    1.  [conversation with text](#org3024e58)
-    2.  [conversation with images](#orga808c4c)
-4.  [Technologies](#orgc099c72)
-5.  [API](#org8941f71)
-    1.  [messages](#orgb3d6b63)
-    2.  [conversations](#orge40afcd)
-    3.  [users](#org5ad33b3)
-6.  [Related Projects](#orgb8d712c)
-7.  [Future](#orgea0289f)
-8.  [Authors](#org05e221f)
-9.  [Acknowledgements](#orgb93e86e)
-10. [License](#org192a967)
+1.  [Introduction](#orgfb66184)
+2.  [Getting Started](#orgf172c8d)
+3.  [Screenshots](#org64d6ad5)
+    1.  [conversation with text](#org926c6d7)
+    2.  [conversation with images](#org2b21992)
+4.  [Technologies](#org6cffdde)
+5.  [API](#orge6554b4)
+    1.  [messages](#org30c751e)
+    2.  [conversations](#orga3285b5)
+    3.  [users](#org6b3e927)
+6.  [Related Projects](#org54fd1ec)
+7.  [Future](#orgdcfc2a3)
+8.  [Authors](#org6ced7c9)
+9.  [Acknowledgements](#orgc0c568b)
+10. [License](#org5677464)
 
 
 
-<a id="org6d7274d"></a>
+<a id="orgfb66184"></a>
 
 # Introduction
 
@@ -29,7 +29,7 @@ Experience seamless connections with the most secure and reliable messaging plat
 This is my personal messaging project that allows people to communicate with each other with ease. They can share simple messages and even images during a conversation. It is a simple but complex project that propelled me to learn about Software Engineering.
 
 
-<a id="org889642d"></a>
+<a id="orgf172c8d"></a>
 
 # Getting Started
 
@@ -37,26 +37,26 @@ This is my personal messaging project that allows people to communicate with eac
 2.  Create account or login using Oauth or with your custom credentials
 
 
-<a id="org2d2ce91"></a>
+<a id="org64d6ad5"></a>
 
 # Screenshots
 
 ![img](./web_dynamic/static/images/avatars/conv.png "conversations")
 
 
-<a id="org3024e58"></a>
+<a id="org926c6d7"></a>
 
 ## conversation with text
 
 ![img](./web_dynamic/static/images/avatars/ju.png)
 
 
-<a id="orga808c4c"></a>
+<a id="org2b21992"></a>
 
 ## conversation with images
 
 
-<a id="orgc099c72"></a>
+<a id="org6cffdde"></a>
 
 # Technologies
 
@@ -66,14 +66,14 @@ This is my personal messaging project that allows people to communicate with eac
 -   Authentication and authorization: Oauth2(google<sub>auth</sub><sub>oauthlib</sub>, google.oauth2 libraries, etc.) and Flask sessions among others.
 
 
-<a id="org8941f71"></a>
+<a id="orge6554b4"></a>
 
 # API
 
 The frontend communicates with the backend storage via a Flask API. Various endpoints have been configured to suite the needs of the project. 
 
 
-<a id="orgb3d6b63"></a>
+<a id="org30c751e"></a>
 
 ## messages
 
@@ -134,7 +134,7 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="orge40afcd"></a>
+<a id="orga3285b5"></a>
 
 ## conversations
 
@@ -200,7 +200,7 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="org5ad33b3"></a>
+<a id="org6b3e927"></a>
 
 ## users
 
@@ -280,7 +280,7 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="orgb8d712c"></a>
+<a id="org54fd1ec"></a>
 
 # Related Projects
 
@@ -288,12 +288,16 @@ A conversation can only be between two or more participants. As such, it would b
 -   [AirBnB Clone](https://github.com/fk2019/AirBnB_clone_v4)
 
 
-<a id="orgea0289f"></a>
+<a id="orgdcfc2a3"></a>
 
 # Future
 
+-   Password reset feature
+-   Furnish all pages in the frontend
+-   DB replication
 
-<a id="org05e221f"></a>
+
+<a id="org6ced7c9"></a>
 
 # Authors
 
@@ -301,7 +305,7 @@ A conversation can only be between two or more participants. As such, it would b
 Feel free to reach out to Francis for any opportunities or collaborations.
 
 
-<a id="orgb93e86e"></a>
+<a id="orgc0c568b"></a>
 
 # Acknowledgements
 
@@ -309,7 +313,7 @@ Feel free to reach out to Francis for any opportunities or collaborations.
 -   \#TeamEmacs: Who needs the hell of exiting Vim?
 
 
-<a id="org192a967"></a>
+<a id="org5677464"></a>
 
 # License
 
