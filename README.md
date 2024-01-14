@@ -1,25 +1,25 @@
 
 # Table of Contents
 
-1.  [Introduction](#orgba15ad8)
-2.  [Getting Started](#orga519998)
-3.  [Screenshots](#org943aa20)
-    1.  [conversation with text](#orgafbdecf)
-    2.  [conversation with images](#org9ceefc7)
-4.  [Technologies](#org4e17556)
-5.  [API](#org30f7b3b)
-    1.  [messages](#org337198b)
-    2.  [conversations](#org25272d3)
-    3.  [users](#org4447e59)
-6.  [Related Projects](#org9241aff)
-7.  [Future](#org7faa5af)
-8.  [Authors](#orgca26a24)
-9.  [Acknowledgements](#org1305445)
-10. [License](#org1b19faf)
+1.  [Introduction](#org6d7274d)
+2.  [Getting Started](#org889642d)
+3.  [Screenshots](#org2d2ce91)
+    1.  [conversation with text](#org3024e58)
+    2.  [conversation with images](#orga808c4c)
+4.  [Technologies](#orgc099c72)
+5.  [API](#org8941f71)
+    1.  [messages](#orgb3d6b63)
+    2.  [conversations](#orge40afcd)
+    3.  [users](#org5ad33b3)
+6.  [Related Projects](#orgb8d712c)
+7.  [Future](#orgea0289f)
+8.  [Authors](#org05e221f)
+9.  [Acknowledgements](#orgb93e86e)
+10. [License](#org192a967)
 
 
 
-<a id="orgba15ad8"></a>
+<a id="org6d7274d"></a>
 
 # Introduction
 
@@ -29,7 +29,7 @@ Experience seamless connections with the most secure and reliable messaging plat
 This is my personal messaging project that allows people to communicate with each other with ease. They can share simple messages and even images during a conversation. It is a simple but complex project that propelled me to learn about Software Engineering.
 
 
-<a id="orga519998"></a>
+<a id="org889642d"></a>
 
 # Getting Started
 
@@ -37,26 +37,26 @@ This is my personal messaging project that allows people to communicate with eac
 2.  Create account or login using Oauth or with your custom credentials
 
 
-<a id="org943aa20"></a>
+<a id="org2d2ce91"></a>
 
 # Screenshots
 
 ![img](./web_dynamic/static/images/avatars/conv.png "conversations")
 
 
-<a id="orgafbdecf"></a>
+<a id="org3024e58"></a>
 
 ## conversation with text
 
 ![img](./web_dynamic/static/images/avatars/ju.png)
 
 
-<a id="org9ceefc7"></a>
+<a id="orga808c4c"></a>
 
 ## conversation with images
 
 
-<a id="org4e17556"></a>
+<a id="orgc099c72"></a>
 
 # Technologies
 
@@ -66,14 +66,14 @@ This is my personal messaging project that allows people to communicate with eac
 -   Authentication and authorization: Oauth2(google<sub>auth</sub><sub>oauthlib</sub>, google.oauth2 libraries, etc.) and Flask sessions among others.
 
 
-<a id="org30f7b3b"></a>
+<a id="org8941f71"></a>
 
 # API
 
 The frontend communicates with the backend storage via a Flask API. Various endpoints have been configured to suite the needs of the project. 
 
 
-<a id="org337198b"></a>
+<a id="orgb3d6b63"></a>
 
 ## messages
 
@@ -134,7 +134,7 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="org25272d3"></a>
+<a id="orge40afcd"></a>
 
 ## conversations
 
@@ -200,7 +200,7 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="org4447e59"></a>
+<a id="org5ad33b3"></a>
 
 ## users
 
@@ -280,19 +280,20 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="org9241aff"></a>
+<a id="orgb8d712c"></a>
 
 # Related Projects
 
-[Star Wars Movie Guide](https://github.com/fk2019/Star_Wars_Movie_Guide)
+-   [Star Wars Movie Guide](https://github.com/fk2019/Star_Wars_Movie_Guide)
+-   [AirBnB Clone](https://github.com/fk2019/AirBnB_clone_v4)
 
 
-<a id="org7faa5af"></a>
+<a id="orgea0289f"></a>
 
 # Future
 
 
-<a id="orgca26a24"></a>
+<a id="org05e221f"></a>
 
 # Authors
 
@@ -300,7 +301,7 @@ A conversation can only be between two or more participants. As such, it would b
 Feel free to reach out to Francis for any opportunities or collaborations.
 
 
-<a id="org1305445"></a>
+<a id="orgb93e86e"></a>
 
 # Acknowledgements
 
@@ -308,7 +309,7 @@ Feel free to reach out to Francis for any opportunities or collaborations.
 -   \#TeamEmacs: Who needs the hell of exiting Vim?
 
 
-<a id="org1b19faf"></a>
+<a id="org192a967"></a>
 
 # License
 
