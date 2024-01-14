@@ -1,23 +1,25 @@
 
 # Table of Contents
 
-1.  [Introduction](#org970bbdc)
-2.  [Getting Started](#org1a11172)
-3.  [Screenshots](#org83f895c)
-4.  [Technologies](#org0c5c9dd)
-5.  [API](#orgbfae28f)
-    1.  [messages](#orgedda6f8)
-    2.  [conversations](#org26ba6dc)
-    3.  [users](#org1e8c983)
-6.  [Related Projects](#orga4039c3)
-7.  [Future](#org431beb1)
-8.  [Authors](#org8486276)
-9.  [Acknowledgements](#org9d188c4)
-10. [License](#org3f3eafa)
+1.  [Introduction](#org50fbf1d)
+2.  [Getting Started](#org6b717f6)
+3.  [Screenshots](#org396b13a)
+    1.  [conversation with text](#org32f51f3)
+    2.  [conversation with images](#orge7f9dff)
+4.  [Technologies](#org9729beb)
+5.  [API](#org1d4b586)
+    1.  [messages](#org0bb5db3)
+    2.  [conversations](#org8529559)
+    3.  [users](#orgc043000)
+6.  [Related Projects](#org38d568e)
+7.  [Future](#org1384172)
+8.  [Authors](#org500fa3d)
+9.  [Acknowledgements](#org809ccd1)
+10. [License](#orge4034d3)
 
 
 
-<a id="org970bbdc"></a>
+<a id="org50fbf1d"></a>
 
 # Introduction
 
@@ -27,7 +29,7 @@ Experience seamless connections with the most secure and reliable messaging plat
 This is my personal messaging project that allows people to communicate with each other with ease. They can share simple messages and even images during a conversation. It is a simple but complex project that propelled me to learn about Software Engineering.
 
 
-<a id="org1a11172"></a>
+<a id="org6b717f6"></a>
 
 # Getting Started
 
@@ -35,14 +37,26 @@ This is my personal messaging project that allows people to communicate with eac
 2.  Create account or login using Oauth or with your custom credentials
 
 
-<a id="org83f895c"></a>
+<a id="org396b13a"></a>
 
 # Screenshots
 
 ![img](./web_dynamic/static/images/avatars/conv.png "conversations")
 
 
-<a id="org0c5c9dd"></a>
+<a id="org32f51f3"></a>
+
+## conversation with text
+
+![img](./web_dynamic/static/images/avatars/ju.png)
+
+
+<a id="orge7f9dff"></a>
+
+## conversation with images
+
+
+<a id="org9729beb"></a>
 
 # Technologies
 
@@ -52,14 +66,14 @@ This is my personal messaging project that allows people to communicate with eac
 -   Authentication and authorization: Oauth2(google<sub>auth</sub><sub>oauthlib</sub>, google.oauth2 libraries, etc.) and Flask sessions among others.
 
 
-<a id="orgbfae28f"></a>
+<a id="org1d4b586"></a>
 
 # API
 
 The frontend communicates with the backend storage via a Flask API. Various endpoints have been configured to suite the needs of the project. 
 
 
-<a id="orgedda6f8"></a>
+<a id="org0bb5db3"></a>
 
 ## messages
 
@@ -120,7 +134,7 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="org26ba6dc"></a>
+<a id="org8529559"></a>
 
 ## conversations
 
@@ -186,7 +200,7 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="org1e8c983"></a>
+<a id="orgc043000"></a>
 
 ## users
 
@@ -266,17 +280,17 @@ A conversation can only be between two or more participants. As such, it would b
 </table>
 
 
-<a id="orga4039c3"></a>
+<a id="org38d568e"></a>
 
 # Related Projects
 
 
-<a id="org431beb1"></a>
+<a id="org1384172"></a>
 
 # Future
 
 
-<a id="org8486276"></a>
+<a id="org500fa3d"></a>
 
 # Authors
 
@@ -284,7 +298,7 @@ Francis Kamau is a skilled Software Engineer trained by ALX.
 Feel free to reach out to Francis for any opportunities or collaborations.
 
 
-<a id="org9d188c4"></a>
+<a id="org809ccd1"></a>
 
 # Acknowledgements
 
@@ -292,7 +306,7 @@ Feel free to reach out to Francis for any opportunities or collaborations.
 -   \#TeamEmacs: Who needs the hell of exiting Vim?
 
 
-<a id="org3f3eafa"></a>
+<a id="orge4034d3"></a>
 
 # License
 
